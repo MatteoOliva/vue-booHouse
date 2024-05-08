@@ -15,7 +15,7 @@ export default {
 
 
     <div class="container-main">
-        <h1 class="m-0">{{ title }}</h1>
+
 
     </div>
 
@@ -24,9 +24,12 @@ export default {
 
 <style lang="scss" scoped>
 .container-main {
-    height: calc(100vh - 200px);
+    height: calc(100vh - 170px);
     flex-grow: 1;
     background-color: gray;
+    background-image: url(/src/img/background-home.jpg);
+    background-position: center;
+    background-size: cover;
 }
 
 ;
