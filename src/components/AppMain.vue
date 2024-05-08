@@ -23,9 +23,9 @@ export default {
 
     <div class="container-main">
 
-        <div class="blood-button" @click="store.fetchApartments()">
+        <router-link :to="{ name: 'search' }" class="blood-button" @click="store.fetchApartments()">
             Cerca
-        </div>
+        </router-link>
 
 
     </div>

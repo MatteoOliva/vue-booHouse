@@ -1,5 +1,8 @@
 import App from './App.vue';
 
+import { router } from './router';
+
+
 import * as bootstrap from "bootstrap";
 
 // / import the fontawesome core /
@@ -17,6 +20,6 @@ library.add(faUser, faSkull);
 import { createApp } from 'vue';
 const app = createApp(App);
 
-app
-    .component('font-awesome-icon', FontAwesomeIcon);
+app.component('font-awesome-icon', FontAwesomeIcon);
+app.use(router);
 app.mount('#app');
