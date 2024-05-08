@@ -10,7 +10,7 @@ export const store = reactive({
 
 
     fetchApartments() {
-        axios.get(`${api.baseUrl}search/rotta`).then(response => {
+        axios.get(`${api.baseUrl}search/castello`).then(response => {
             this.apartments = response.data;
             console.log(this.apartments);
         });
