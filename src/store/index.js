@@ -2,7 +2,7 @@ import axios from 'axios';
 import { reactive } from 'vue';
 
 export const api = {
-    baseUrl: 'http://127.0.0.1:8000/api/'
+    baseUrl: 'http://127.0.0.1:8000/api/apartments/'
 };
 
 export const store = reactive({
@@ -10,7 +10,7 @@ export const store = reactive({
 
 
     fetchApartments() {
-        axios.get(`${api.baseUrl}search/castello`).then(response => {
+        axios.get(`${api.baseUrl}search/rotta`).then(response => {
             this.apartments = response.data;
             console.log(this.apartments);
         });

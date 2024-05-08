@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { RouterLink } from 'vue-router';
 
 export default {
     data() {
@@ -27,10 +28,10 @@ export default {
         <div class="header d-flex  align-items-center">
 
             <div class="container d-flex justify-content-between align-items-center">
-                <div class="logo-left d-flex align-items-center gap-4">
+                <router-link :to="{ name: 'home' }" class="logo-left d-flex align-items-center gap-4">
                     <img src="/src/img/head-logo.png" alt="">
-                    <a href="">Home Page</a>
-                </div>
+
+                </router-link>
 
                 <div class="header-right">
 
