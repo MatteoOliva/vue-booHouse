@@ -6,8 +6,17 @@ export default {
         return {
 
         };
+    },
+
+    methods: {
+
+
     }
 }
+
+
+
+
 
 </script>
 
@@ -26,8 +35,9 @@ export default {
                 <div class="header-right">
 
                     <ul class="d-flex gap-4 ">
-                        <li><a href="">Login <font-awesome-icon icon="fa-solid fa-user" /></a></li>
-                        <li><a href="">Registrati</a></li>
+                        <li><a href="http://127.0.0.1:8000/login">Login <font-awesome-icon
+                                    icon="fa-solid fa-user" /></a></li>
+                        <li><a href="http://127.0.0.1:8000/register">Registrati</a></li>
                     </ul>
 
                 </div>

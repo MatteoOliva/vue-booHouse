@@ -6,6 +6,15 @@ export default {
         return {
             title: "MAIN"
         };
+    },
+
+    methods: {
+        fecthData() {
+            axios.get('http://127.0.0.1:8000/api/search/castello').then(response => {
+                console.log(response);
+            });
+
+        }
     }
 }
 
@@ -16,7 +25,7 @@ export default {
 
     <div class="container-main">
 
-        <div class="blood-button">
+        <div class="blood-button" @click="fecthData()">
             Cerca
         </div>
 
