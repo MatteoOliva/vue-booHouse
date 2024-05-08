@@ -1,20 +1,18 @@
 <script>
 import axios from 'axios';
+import { store, api } from '../store';
 
 export default {
     data() {
         return {
-            title: "MAIN"
+            title: "MAIN",
+            store,
+            api
         };
     },
 
     methods: {
-        fecthData() {
-            axios.get('http://127.0.0.1:8000/api/search/castello').then(response => {
-                console.log(response);
-            });
 
-        }
     }
 }
 
@@ -25,7 +23,7 @@ export default {
 
     <div class="container-main">
 
-        <div class="blood-button" @click="fecthData()">
+        <div class="blood-button" @click="store.fetchApartments()">
             Cerca
         </div>
 
