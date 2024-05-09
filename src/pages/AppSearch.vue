@@ -4,7 +4,7 @@ import { store } from "../store";
 import CardApartment from "../components/search_components/CardApartment.vue";
 
 export default {
-    props: { CardApartment: Object };
+    props: { CardApartment: Object },
     data() {
         return {
             store,
