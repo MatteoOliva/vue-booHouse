@@ -254,7 +254,7 @@ export default {
     button {
         position: absolute;
         top: 47px;
-        right: 8%;
+        right: 40%;
         width: var(--btn-width);
         font-weight: bold;
         background: var(--color-brand);
