@@ -23,7 +23,7 @@ export default {
     <div class="container-main">
         <!-- CAROSELLO -->
         <router-link :to="{ name: 'search' }" @click="store.fetchApartments()">
-            <carousel-apartments></carousel-apartments>
+            <carousel-apartments class=""></carousel-apartments>
             <div class="blood-button">
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" />
             </div>
@@ -45,6 +45,7 @@ export default {
     background-position: center;
     background-size: cover;
     position: relative;
+
 
     .slogan-main {
         color: white;

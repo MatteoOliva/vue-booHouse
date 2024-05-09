@@ -24,15 +24,25 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3">
-      <card-apartment
-        v-for="apartment in store.apartments"
-        :apartment="apartment"
-      >
-      </card-apartment>
+
+
+  <div id="carouselExampleInterval" class="carousel slide carosello" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item" :class="index == 0 ? 'active' : ''" data-bs-interval="2000"
+        v-for="(apartment, index) in store.apartments">
+        <img :src="apartment.image" class="d-block w-100" :alt="apartment.title">
+      </div>
+
     </div>
+
   </div>
+
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.carosello {
+
+  height: 200px;
+
+}
+</style>
