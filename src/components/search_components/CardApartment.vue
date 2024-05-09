@@ -6,7 +6,6 @@ export default {
   data() {
     return {};
   },
-
 };
 </script>
 
@@ -18,10 +17,15 @@ export default {
     > -->
     <div class="card h-100">
       <div class="cover">
-        <img v-if="apartment.image" :src="apartment.image" class="card-img-top" />
+        <img
+          v-if="apartment.image"
+          :src="apartment.image"
+          class="card-img-top"
+        />
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ apartment.title }}</h5>
+        <p>{{ apartment.address }}</p>
       </div>
     </div>
     <!-- </router-link> -->
