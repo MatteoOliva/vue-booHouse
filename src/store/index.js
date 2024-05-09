@@ -13,6 +13,7 @@ export const store = reactive({
     fetchApartments(searchTerm) {
         axios.get(`${api.baseUrl}search/${searchTerm}`).then((response) => {
             this.apartments = response.data.data;
+
             console.log(this.apartments);
         });
     },
@@ -24,6 +25,15 @@ export const store = reactive({
             console.log(this.apartments);
         });
     },
+
+    // chiamata per tutti i tipi di appartamenti
+    fecthAllApartments() {
+        axios.get(`${api.baseUrl}`).then((response) => {
+            this.apartments = response.data;
+            console.log(this.apartments);
+        });
+    }
+
 });
 
 /*      fecthApartment() {
