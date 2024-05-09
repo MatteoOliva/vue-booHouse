@@ -27,8 +27,13 @@ export default {
             <div class="blood-button">
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" />
             </div>
+
         </router-link>
 
+        <div class="slogan-main">Dove il brivido incontra il comfort. Prenota la tua fuga da favola...
+            con un tocco di mistero! <br> <br>
+            Trova il tuo alloggio da Paura!
+        </div>
 
     </div>
 
@@ -41,6 +46,24 @@ export default {
     background-position: center;
     background-size: cover;
     position: relative;
+
+    .slogan-main {
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+
+        position: absolute;
+        bottom: 35%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-shadow: -1.5px -1.5px 0 #000,
+            1.5px -1.5px 0 #000,
+            -1.5px 1.5px 0 #000,
+            1.5px 1.5px 0 #000;
+        ;
+
+    }
 }
 
 .blood-button {
