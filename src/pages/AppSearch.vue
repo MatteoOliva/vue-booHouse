@@ -1,13 +1,14 @@
 <script>
 import AppMain from "../components/AppMain.vue";
-import { store } from "../store";
+import { store, api } from "../store";
 import CardApartment from "../components/search_components/CardApartment.vue";
 
 export default {
-    props: { CardApartment: Object },
+
     data() {
         return {
             store,
+            api,
             title: "SEARCH PAGE",
             apartmentsTerms: ''
         };
@@ -40,7 +41,8 @@ export default {
 
 
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
-            <card-apartment> </card-apartment>
+            <card-apartment v-for="apartment in store.apartments" :apartment="apartment">
+            </card-apartment>
         </div>
     </div>
 </template>
