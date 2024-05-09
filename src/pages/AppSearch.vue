@@ -26,7 +26,7 @@ export default {
 
         handleSearch() {
             if (this.apartmentsTerms === '') {
-                store.fecthAllApartments();
+                store.fetchAllApartments();
             } else {
                 this.fetchApartments(this.apartmentsTerms);
             }
@@ -35,8 +35,9 @@ export default {
 
 
     mounted() {
-        store.fecthAllApartments();
+        store.fetchAllApartments();
     },
+    // v-if="apartmentsTerms == '' ? store.fetchApartmentsSponsor() : fetchApartments(apartmentsTerms)"
 
 
 };

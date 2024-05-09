@@ -27,7 +27,7 @@ export const store = reactive({
     },
 
     // chiamata per tutti i tipi di appartamenti
-    fecthAllApartments() {
+    fetchAllApartments() {
         axios.get(`${api.baseUrl}`).then((response) => {
             this.apartments = response.data;
             console.log(this.apartments);
