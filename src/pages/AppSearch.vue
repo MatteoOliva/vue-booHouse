@@ -14,8 +14,11 @@ export default {
             apartmentsTerms: "",
             lat: "",
             lon: "",
+            address: '',
             radius: "",
-            resultAddres: [],
+            // resultAddres: [],
+            clickResult: '',
+            radius: 20,
         };
     },
 
@@ -49,53 +52,98 @@ export default {
                 });
         },
 
+        // fetchAutocomplete() {
+        //     // this.resultAddres = [];
+        //     //   console.log("ciao");
+        //     if (this.apartmentsTerms.length > 3) {
+
+        //         const apiKey = "8TVYgA3vbL771Lx9e0MWAxKazyXxbjdn";
+        //         const url =
+        //             "https://api.tomtom.com/search/2/geocode/" +
+        //             this.apartmentsTerms +
+        //             ".json?countrySet=IT&language=it-IT&key=" +
+        //             apiKey;
+        //         // console.log(url);
+        //         // console.log(apiKey)
+        //         axios.get(url).then((response) => {
+        //             const results = response.data.results;
+        //             //   console.log(results);
+        //             const container = document.getElementById("autocomplete-results");
+        //             // Pulisce i vecchi risultati
+        //             container.innerHTML = "";
+
+        //             if (results.length > 0) {
+        //                 results.forEach((result) => {
+        //                     const div = document.createElement("a");
+        //                     const resultAddres = {
+        //                         address: result.address.freeformAddress,
+        //                         lat: result.position.lat,
+        //                         lon: result.position.lon,
+        //                     };
+
+        //                     // this.resultAddres.push(resultAddres);
+
+
+        //                     div.innerHTML = result.address.freeformAddress;
+        //                     // div.setAttribute('id', index);
+        //                     // Classi di Bootstrap per gli elementi della lista
+        //                     div.classList.add("list-group-item", "list-group-item-action");
+        //                     div.onclick = function () {
+        //                         document.getElementById("address").value =
+        //                             result.address.freeformAddress;
+        //                         // this.clickResult = this.id;
+        //                         this.address = result.address.freeformAddress;
+        //                         this.lat = resultAddres.lat;
+        //                         this.lon = resultAddres.lon;
+        //                         console.log(this.lat, this.lon, this.address);
+
+        //                         // Nasconde i risultati dopo la selezione
+        //                         container.innerHTML = "";
+        //                     };
+        //                     container.appendChild(div);
+        //                 });
+        //             }
+        //         });
+        //     }
+        // },
+
         fetchAutocomplete() {
-            //   console.log("ciao");
             if (this.apartmentsTerms.length > 3) {
                 const apiKey = "8TVYgA3vbL771Lx9e0MWAxKazyXxbjdn";
-                const url =
-                    "https://api.tomtom.com/search/2/geocode/" +
-                    this.apartmentsTerms +
-                    ".json?countrySet=IT&language=it-IT&key=" +
-                    apiKey;
-                // console.log(url);
-                // console.log(apiKey)
+                const url = `https://api.tomtom.com/search/2/geocode/${encodeURIComponent(this.apartmentsTerms)}.json?countrySet=IT&language=it-IT&key=${apiKey}`;
+
                 axios.get(url).then((response) => {
                     const results = response.data.results;
-                    //   console.log(results);
                     const container = document.getElementById("autocomplete-results");
-                    // Pulisce i vecchi risultati
-                    container.innerHTML = "";
+                    container.innerHTML = ""; // Pulisce i vecchi risultati
 
-                    if (results.length > 0) {
-                        results.forEach((result) => {
-                            const div = document.createElement("a");
-                            const resultAddres = {
-                                address: result.address.freeformAddress,
-                                lat: result.position.lat,
-                                lon: result.position.lon,
-                            };
-
-                            this.resultAddres.push(resultAddres);
-
-                            div.innerHTML = result.address.freeformAddress;
-
-                            // Classi di Bootstrap per gli elementi della lista
-                            div.classList.add("list-group-item", "list-group-item-action");
-                            div.onclick = function () {
-                                document.getElementById("address").value =
-                                    result.address.freeformAddress;
-
-                                // Nasconde i risultati dopo la selezione
-                                container.innerHTML = "";
-                            };
-                            container.appendChild(div);
-                        });
-                    }
+                    results.forEach((result) => {
+                        const div = document.createElement("a");
+                        div.innerHTML = result.address.freeformAddress;
+                        div.classList.add("list-group-item", "list-group-item-action");
+                        div.onclick = () => {
+                            this.address = result.address.freeformAddress;
+                            this.lat = result.position.lat;
+                            this.lon = result.position.lon;
+                            this.apartmentsTerms = result.address.freeformAddress;
+                            console.log(this.lat, this.lon, this.address);
+                            container.innerHTML = ""; // Nasconde i risultati dopo la selezione
+                        };
+                        container.appendChild(div);
+                    });
                 });
             }
         },
+
+        fetchFilterApartments(lat, lon, radius, search_term) {
+            axios.get(`http://127.0.0.1:8000/api/apartments/search/ordered/${search_term}/${lat}/${lon}/${radius}`).then((response) => {
+                console.log(response.data);
+            });
+        }
+
     },
+
+
 
     mounted() {
         store.fetchAllApartments();
@@ -106,13 +154,16 @@ export default {
 
 <template>
     <div class="container-main">
-        <div class="container text-center">
+        <div class="container">
+            <button class="btn btn-primary"
+                @click="fetchFilterApartments(this.lat, this.lon, this.radius, this.address)">Invia</button>
             <form onsubmit="event.preventDefault();" role="search" class="my-5">
-                <label for="search" class="text-center">Search for stuff</label>
+                <label for="search" class="">Search for stuff</label>
                 <input @keyup="fetchAutocomplete()" v-model="apartmentsTerms" id="address" type="search"
                     placeholder="Cerca appartamento..." autofocus required autocomplete="off" />
                 <div id="autocomplete-results" class="list-group position-absolute z-1"></div>
             </form>
+
         </div>
 
         <div class="container">
@@ -121,7 +172,9 @@ export default {
                 </card-apartment>
             </div>
         </div>
+
     </div>
+
 </template>
 
 <style lang="scss" scoped>
@@ -172,7 +225,6 @@ export default {
     // Main styles
     form {
         position: relative;
-        width: 30rem;
         background: var(--color-brand);
         border-radius: var(--rad);
     }
@@ -188,7 +240,7 @@ export default {
 
     input[type="search"] {
         outline: 0; // <-- shold probably remove this for better accessibility, adding for demo aesthetics for now.
-        width: 100%;
+        width: 75%;
         background: var(--color-light);
         padding: 0 1.6rem;
         border-radius: var(--rad);
@@ -200,19 +252,18 @@ export default {
     }
 
     button {
-        display: none; // prevent being able to tab to it
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 47px;
+        right: 8%;
         width: var(--btn-width);
         font-weight: bold;
         background: var(--color-brand);
         border-radius: 0 var(--rad) var(--rad) 0;
+        z-index: 1;
     }
 
     input:not(:placeholder-shown) {
         border-radius: var(--rad) 0 0 var(--rad);
-        width: calc(100% - var(--btn-width));
 
         +button {
             display: block;
