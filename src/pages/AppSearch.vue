@@ -16,13 +16,27 @@ export default {
 
     components: { AppMain, CardApartment },
 
+
     methods: {
         fetchApartments() {
             if (this.apartmentsTerms.trim()) {
                 store.fetchApartments(this.apartmentsTerms);
             }
+        },
+
+        handleSearch() {
+            if (this.apartmentsTerms === '') {
+                store.fecthAllApartments();
+            } else {
+                this.fetchApartments(this.apartmentsTerms);
+            }
         }
-    }
+    },
+
+
+    mounted() {
+        store.fecthAllApartments();
+    },
 
 
 };
@@ -31,17 +45,18 @@ export default {
 <template>
     <div class="container-main">
 
+        <div class="container text-center">
 
-        <form onsubmit="event.preventDefault();" role="search">
-            <label for="search">Search for stuff</label>
-            <input @keyup="fetchApartments(apartmentsTerms)" v-model="apartmentsTerms" id="search" type="search"
-                placeholder="Search..." autofocus required />
-            <!-- <button type="submit" >Go</button> -->
-        </form>
+            <form onsubmit="event.preventDefault();" role="search" class="my-5">
+                <label for="search" class="text-center">Search for stuff</label>
+                <input @keyup="handleSearch()" v-model="apartmentsTerms" id="search" type="search"
+                    placeholder="Cerca appartamento..." autofocus required />
+            </form>
+        </div>
 
         <div class="container">
 
-            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
+            <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3" type="button">
                 <card-apartment v-for="apartment in store.apartments" :apartment="apartment">
                 </card-apartment>
             </div>
@@ -58,6 +73,7 @@ export default {
     background-position: center;
     background-size: cover;
     position: relative;
+    overflow: auto;
 
     //Vars 
     :root {
