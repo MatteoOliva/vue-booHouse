@@ -12,7 +12,7 @@ export const store = reactive({
     //   chiamata ricerca appartamenti
     fetchApartments(searchTerm) {
         axios.get(`${api.baseUrl}search/${searchTerm}`).then((response) => {
-            this.apartments = response.data;
+            this.apartments = response.data.data;
             console.log(this.apartments);
         });
     },

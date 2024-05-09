@@ -6,6 +6,7 @@ export default {
   data() {
     return {};
   },
+
 };
 </script>
 
@@ -17,11 +18,7 @@ export default {
     > -->
     <div class="card h-100">
       <div class="cover">
-        <img
-          v-if="apartment.image"
-          :src="apartment.image"
-          class="card-img-top"
-        />
+        <img v-if="apartment.image" :src="apartment.image" class="card-img-top" />
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ apartment.title }}</h5>
@@ -37,16 +34,20 @@ export default {
     cursor: pointer;
     text-decoration: none;
   }
+
   &:hover {
     transform: scale(1.02);
   }
+
   .cover {
     position: relative;
+
     .badge.type {
       position: absolute;
       top: 15px;
       right: 15px;
     }
+
     .tech {
       position: absolute;
       bottom: 15px;

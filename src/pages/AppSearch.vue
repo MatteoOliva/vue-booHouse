@@ -39,10 +39,12 @@ export default {
             <!-- <button type="submit" >Go</button> -->
         </form>
 
+        <div class="container">
 
-        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
-            <card-apartment v-for="apartment in store.apartments" :apartment="apartment">
-            </card-apartment>
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
+                <card-apartment v-for="apartment in store.apartments" :apartment="apartment">
+                </card-apartment>
+            </div>
         </div>
     </div>
 </template>
