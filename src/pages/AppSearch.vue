@@ -1,134 +1,152 @@
 <script>
 import AppMain from "../components/AppMain.vue";
-
+import { store } from "../store";
 import CardApartment from "../components/search_components/CardApartment.vue";
 
 export default {
-  data() {
-    return {
-      title: "SEARCH PAGE",
-    };
-  },
+    props: { CardApartment: Object };
+    data() {
+        return {
+            store,
+            title: "SEARCH PAGE",
+            apartmentsTerms: ''
+        };
+    },
 
-  components: { AppMain, CardApartment },
+    components: { AppMain, CardApartment },
+
+    methods: {
+        fetchApartments() {
+            if (this.apartmentsTerms.trim()) {
+                store.fetchApartments(this.apartmentsTerms);
+            }
+        }
+    }
+
+
 };
 </script>
 
 <template>
-  <div class="container-main">
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-      crossorigin="anonymous"
-    />
+    <div class="container-main">
 
-    <form action="">
-      <input type="search" required />
-      <i class="fa fa-search"></i>
-      <a href="javascript:void(0)" id="clear-btn">Clear</a>
-    </form>
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
-      <card-apartment> </card-apartment>
+
+        <form onsubmit="event.preventDefault();" role="search">
+            <label for="search">Search for stuff</label>
+            <input @keyup="fetchApartments(apartmentsTerms)" v-model="apartmentsTerms" id="search" type="search"
+                placeholder="Search..." autofocus required />
+            <!-- <button type="submit" >Go</button> -->
+        </form>
+
+
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
+            <card-apartment> </card-apartment>
+        </div>
     </div>
-  </div>
 </template>
 
 <style lang="scss" scoped>
 .container-main {
-  height: calc(100vh - 170px);
-  flex-grow: 1;
-  background-color: gray;
-  background-image: url(/src/img/background-search.jpg);
-  background-position: center;
-  background-size: cover;
-  position: relative;
-
-  body {
-    padding: 0;
-    margin: 0;
-    height: 100vh;
-    width: 100%;
-    background: #07051a;
-  }
-
-  form {
+    height: calc(100vh - 170px);
+    flex-grow: 1;
+    background-color: gray;
+    background-image: url(/src/img/background-search.jpg);
+    background-position: center;
+    background-size: cover;
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 1s;
-    width: 50px;
-    height: 50px;
-    background: white;
-    box-sizing: border-box;
-    border-radius: 25px;
-    border: 4px solid white;
-    padding: 5px;
-  }
 
-  input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 42.5px;
-    line-height: 30px;
-    outline: 0;
-    border: 0;
-    display: none;
-    font-size: 1em;
-    border-radius: 20px;
-    padding: 0 20px;
-  }
+    //Vars 
+    :root {
+        --rad: .7rem;
+        --dur: .3s;
+        --color-dark: #2f2f2f;
+        --color-light: #fff;
+        --color-brand: #57bd84;
+        --font-fam: 'Lato', sans-serif;
+        --height: 5rem;
+        --btn-width: 6rem;
+        --bez: cubic-bezier(0, 0, 0.43, 1.49);
+    }
 
-  .fa {
-    box-sizing: border-box;
-    padding: 10px;
-    width: 42.5px;
-    height: 42.5px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 50%;
-    color: #07051a;
-    text-align: center;
-    font-size: 1.2em;
-    transition: all 1s;
-  }
+    // Setup
+    body {
+        background: var(--color-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh
+    }
 
-  form:hover,
-  form:valid {
-    width: 200px;
-    cursor: pointer;
-  }
+    html {
+        box-sizing: border-box;
+        height: 100%;
+        font-size: 10px;
+    }
 
-  form:hover input,
-  form:valid input {
-    display: block;
-  }
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
 
-  form:hover .fa,
-  form:valid .fa {
-    background: #07051a;
-    color: white;
-  }
+    // Main styles
+    form {
+        position: relative;
+        width: 30rem;
+        background: var(--color-brand);
+        border-radius: var(--rad);
+    }
 
-  a {
-    display: none;
-    position: absolute;
-    top: 70px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    font-size: 20px;
-    color: white;
-    text-align: center;
-    width: 100%;
-  }
+    input,
+    button {
+        height: var(--height);
+        font-family: var(--font-fam);
+        border: 0;
+        color: var(--color-dark);
+        font-size: 1.8rem;
+    }
 
-  form:valid a {
-    display: block;
-  }
+    input[type="search"] {
+        outline: 0; // <-- shold probably remove this for better accessibility, adding for demo aesthetics for now.
+        width: 100%;
+        background: var(--color-light);
+        padding: 0 1.6rem;
+        border-radius: var(--rad);
+        appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
+        transition: all var(--dur) var(--bez);
+        transition-property: width, border-radius;
+        z-index: 1;
+        position: relative;
+    }
+
+    button {
+        display: none; // prevent being able to tab to it
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: var(--btn-width);
+        font-weight: bold;
+        background: var(--color-brand);
+        border-radius: 0 var(--rad) var(--rad) 0;
+    }
+
+    input:not(:placeholder-shown) {
+        border-radius: var(--rad) 0 0 var(--rad);
+        width: calc(100% - var(--btn-width));
+
+        +button {
+            display: block;
+        }
+    }
+
+    label {
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+        padding: 0;
+        border: 0;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+    }
 }
 </style>
