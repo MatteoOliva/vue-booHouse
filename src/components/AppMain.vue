@@ -20,10 +20,15 @@ export default {
 </script>
 
 <template>
-    <div class="container-main">
+    <div class="container-main ">
         <!-- CAROSELLO -->
+        <div class="row justify-content-center ">
+            <div class="col-6 ">
+                <carousel-apartments class=""></carousel-apartments>
+
+            </div>
+        </div>
         <router-link :to="{ name: 'search' }" @click="store.fetchApartments()">
-            <carousel-apartments class=""></carousel-apartments>
             <div class="blood-button">
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" />
             </div>
