@@ -2,6 +2,8 @@
 import axios from "axios";
 import { store, api } from "../store";
 
+import CarouselApartments from "./search_components/CarouselApartments.vue";
+
 export default {
   data() {
     return {
@@ -11,12 +13,16 @@ export default {
     };
   },
 
+  components: { CarouselApartments },
+
   methods: {},
 };
 </script>
 
 <template>
   <div class="container-main">
+    <!-- CAROSELLO -->
+    <carousel-apartments></carousel-apartments>
     <router-link :to="{ name: 'search' }" @click="store.fetchApartments()">
       <div class="blood-button">
         <font-awesome-icon
