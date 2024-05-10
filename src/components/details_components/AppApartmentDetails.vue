@@ -1,27 +1,33 @@
 <script>
-import axios from "axios";
-import { store, api } from "../../store";
 
 export default {
   props: { apartment: Object },
 
   data() {
-    return {
-
-    };
+    return {};
   },
 
-  components: {  },
 };
 
 </script>
 
 <template>
-    <div class="container">
-        <h1>{{ apartment.title }}</h1>
+  <div class="col">
+    <!-- <router-link
+      :to="{ name: 'project', params: { slug: project.slug } }"
+      class="card-btn"
+    > -->
+    <div class="card h-100">
+      <div class="cover">
+        <img v-if="apartment.image" :src="apartment.image" class="card-img-top" />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ apartment.title }}</h5>
+        <p>{{ apartment.address }}</p>
+      </div>
     </div>
+    <!-- </router-link> -->
+  </div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

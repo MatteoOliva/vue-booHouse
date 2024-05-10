@@ -13,6 +13,7 @@ export default {
             title: "SEARCH PAGE",
             apartmentsTerms: "",
             clickResult: '',
+            services: [],
             query: {
                 lat: "",
                 lon: "",
@@ -88,17 +89,27 @@ export default {
         },
 
         fetchFilterApartments() {
-            const search_term = this.query.address;
-            const lat = this.query.lat;
-            const lon = this.query.lon;
-            const radius = this.query.radius;
-            console.log(lat, lon, radius, search_term);
-            axios.get(`http://127.0.0.1:8000/api/apartments/search/ordered/${search_term}/${lat}/${lon}/${radius}`).then((response) => {
+            // const search_term = this.query.address;
+            // const lat = this.query.lat;
+            // const lon = this.query.lon;
+            // const radius = this.query.radius;
+
+            const params = new URLSearchParams(this.query).toString();
+            // console.log(query);
+            // console.log(lat, lon, radius, search_term);
+            axios.post(`http://127.0.0.1:8000/api/apartments/search/all?${params}`).then((response) => {
 
                 store.apartments = response.data;
                 console.log(response.data);
             });
+
+            this.query.rooms = '';
+            this.query.beds = '';
+            this.query.toilets = '';
+            this.query.mq = '';
+
         },
+
 
         validateRadius() {
             if (this.query.radius < 1) {
@@ -111,7 +122,7 @@ export default {
 
         fetchServices() {
             axios.get(`http://127.0.0.1:8000/api/services/`).then((response) => {
-                this.query.services = response.data.results;
+                this.services = response.data.results;
                 console.log(response);
             });
         }
@@ -207,9 +218,9 @@ export default {
 
                                     <div class="d-flex flex-column">
 
-                                        <div v-for="service in query.services" :key="service.id" class="service-item">
-                                            <input type="checkbox" :id="'service-' + service.id" :value="service.id"
-                                                class="form-check-input">
+                                        <div v-for="service in services" :key="service.id" class="service-item">
+                                            <input type="checkbox" :id="'service-' + service.id"
+                                                v-model="query.services" :value="service.id" class="form-check-input">
                                             <label :for="'service-' + service.id" class="ms-2 services-details">
                                                 <img :src="service.icon" :alt="service.name" class="service-icon">
                                                 {{ service.name }}

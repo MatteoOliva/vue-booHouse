@@ -1,7 +1,7 @@
 <script>
 export default {
   // ricevo il contenuto dell'appartamento via props
-  props: { apartment: Object, isDetail: Boolean },
+  props: { apartment: Object },
 
   data() {
     return {};
@@ -17,11 +17,7 @@ export default {
     > -->
     <div class="card h-100">
       <div class="cover">
-        <img
-          v-if="apartment.image"
-          :src="apartment.image"
-          class="card-img-top"
-        />
+        <img v-if="apartment.image" :src="apartment.image" class="card-img-top" />
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ apartment.title }}</h5>
