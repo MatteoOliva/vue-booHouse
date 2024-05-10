@@ -205,11 +205,16 @@ export default {
                                 <!-- SERVIZI -->
                                 <div>
 
-                                    <div class="m-0 services-details d-flex align-items-center gap-1 my-1"
-                                        v-for="service in query.services"> <input class="form-check-input"
-                                            type="checkbox" :value="service.id" id="flexCheckDefault">
-                                        <img :src="service.icon" alt="">{{
-                                            service.name }}
+                                    <div class="d-flex flex-column">
+
+                                        <div v-for="service in query.services" :key="service.id" class="service-item">
+                                            <input type="checkbox" :id="'service-' + service.id" :value="service.id"
+                                                class="form-check-input">
+                                            <label :for="'service-' + service.id" class="ms-2 services-details">
+                                                <img :src="service.icon" :alt="service.name" class="service-icon">
+                                                {{ service.name }}
+                                            </label>
+                                        </div>
 
                                     </div>
 
