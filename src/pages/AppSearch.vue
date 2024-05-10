@@ -117,50 +117,106 @@ export default {
     <div class="container-main">
 
         <div class="container">
-            
-            <button class="btn btn-primary" @click="fetchFilterApartments()">Invia</button>
-            <form onsubmit="event.preventDefault();" role="search" class="my-5">
-                <label for="search" class="">Search for stuff</label>
+
+            <div class="my-4 text-center">
+
                 <input @keyup="fetchAutocomplete()" v-model="apartmentsTerms" id="address" type="search"
-                    placeholder="Cerca appartamento..." autofocus required autocomplete="off" />
-                    <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          Launch demo modal
-                        </button>
-                        
-                        <!-- Modal -->
-                        <div class="modal fade modal-dialog modal-dialog-centered modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="input-group flex-nowrap">
-                                    <input type="number" class="form-control" placeholder="Inserisci radius" v-model.number="radius"
-                                    @input="validateRadius" min="1" max="20" aria-describedby="addon-wrapping" required>
-                                </div>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                <div id="autocomplete-results" class="list-group position-absolute z-1"></div>
-            </form>
+                    placeholder="Cerca appartamento..." required autocomplete="off" class="w-50" />
 
-        </div>
+                <button class="btn btn-primary mx-3" @click="fetchFilterApartments()">Invia</button>
 
-        <div class="container">
-            <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3" type="button">
-                <card-apartment v-for="apartment in store.apartments" :apartment="apartment">
-                </card-apartment>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Ricerca Avanzata
+                </button>
             </div>
-        </div>
 
+            <!-- MODALE -->
+            <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ricerca Avanzata</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <!-- modal body -->
+                        <div class="modal-body">
+                            <div class="input-group d-flex gap-3 align-items-center">
+
+
+
+
+
+                                <!-- RADIUS -->
+                                <div>
+                                    <p class="m-0">Raggio di Ricerca</p>
+                                    <input type="number" class="form-control" placeholder="Inserisci radius"
+                                        v-model.number="radius" @input="validateRadius" min="1" max="20"
+                                        aria-describedby="addon-wrapping" required>
+                                </div>
+
+                                <!-- ROOMS -->
+                                <div>
+                                    <p class="m-0">Numero Stanze</p>
+                                    <input type="number" class="form-control" placeholder="N° Stanze"
+                                        aria-describedby="addon-wrapping" min="0" required>
+                                </div>
+
+
+
+                                <!-- BAGNI -->
+                                <div>
+                                    <p class="m-0">Numero Bagni</p>
+                                    <input type="number" class="form-control" placeholder="N° Bagni"
+                                        aria-describedby="addon-wrapping" min="0" required>
+                                </div>
+
+                                <!-- LETTI -->
+                                <div>
+                                    <p class="m-0">Numero Letti</p>
+                                    <input type="number" class="form-control" placeholder="N° Letti"
+                                        aria-describedby="addon-wrapping" min="0" required>
+                                </div>
+
+                                <!-- MQ -->
+                                <div>
+                                    <p class="m-0">Metri Quadri</p>
+                                    <input type="number" class="form-control" placeholder="Mq"
+                                        aria-describedby="addon-wrapping" min="0" required>
+                                </div>
+
+                                <!-- SERVIZI -->
+                                <div>
+                                    <p class="m-0">Servizi Aggiuntivi</p>
+                                    <input type="number" class="form-control" aria-describedby="addon-wrapping"
+                                        required>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                            <button class="btn btn-primary mx-3" @click="fetchFilterApartments()"
+                                data-bs-dismiss="modal">Ricerca</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="autocomplete-results" class="list-group position-absolute z-1"></div>
+            <!-- </form> -->
+
+
+            <div class="container">
+                <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3" type="button">
+                    <card-apartment v-for="apartment in store.apartments" :apartment="apartment">
+                    </card-apartment>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 </template>
@@ -175,97 +231,5 @@ export default {
     background-size: cover;
     position: relative;
     overflow: auto;
-
-    //Vars
-    :root {
-        --rad: 0.7rem;
-        --dur: 0.3s;
-        --color-dark: #2f2f2f;
-        --color-light: #fff;
-        --color-brand: #57bd84;
-        --font-fam: "Lato", sans-serif;
-        --height: 5rem;
-        --btn-width: 6rem;
-        --bez: cubic-bezier(0, 0, 0.43, 1.49);
-    }
-
-    // Setup
-    body {
-        background: var(--color-dark);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-    }
-
-    html {
-        box-sizing: border-box;
-        height: 100%;
-        font-size: 10px;
-    }
-
-    *,
-    *::before,
-    *::after {
-        box-sizing: inherit;
-    }
-
-    // Main styles
-    form {
-        position: relative;
-        background: var(--color-brand);
-        border-radius: var(--rad);
-    }
-
-    input,
-    button {
-        height: var(--height);
-        font-family: var(--font-fam);
-        border: 0;
-        color: var(--color-dark);
-        font-size: 1.8rem;
-    }
-
-    input[type="search"] {
-        outline: 0; // <-- shold probably remove this for better accessibility, adding for demo aesthetics for now.
-        width: 75%;
-        background: var(--color-light);
-        padding: 0 1.6rem;
-        border-radius: var(--rad);
-        appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
-        transition: all var(--dur) var(--bez);
-        transition-property: width, border-radius;
-        z-index: 1;
-        position: relative;
-    }
-
-    button {
-        position: absolute;
-        top: 47px;
-        right: 19%;
-        width: var(--btn-width);
-        font-weight: bold;
-        background: var(--color-brand);
-        border-radius: 0 var(--rad) var(--rad) 0;
-        z-index: 1;
-    }
-
-    input:not(:placeholder-shown) {
-        border-radius: var(--rad) 0 0 var(--rad);
-
-        +button {
-            display: block;
-        }
-    }
-
-    label {
-        position: absolute;
-        clip: rect(1px, 1px, 1px, 1px);
-        padding: 0;
-        border: 0;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-    }
 }
 </style>
