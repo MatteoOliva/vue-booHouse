@@ -24,33 +24,45 @@ export default {
 </script>
 
 <template>
+  <div class="container-carousel">
 
-  <div class="container text-center title-ev">
-    <div>Alloggi Infestati in evidenza...</div>
-  </div>
-  <div id="carouselExampleInterval" class="carousel slide carosello" data-bs-ride="carousel">
-    <div class="carousel-inner" style="height: 400px; border-radius: 50px;">
-      <div class="carousel-item" :class="index == 0 ? 'active' : ''" data-bs-interval="1500"
-        v-for="(apartment, index) in store.apartments">
-        <img :src="apartment.image" class="d-block w-100"
-          style="height: 500px; width: auto; object-fit: cover; border-radius: 50px;" :alt="apartment.title">
+    <div class="text-center title-ev">
+      <div>Alloggi Infestati in evidenza...</div>
+    </div>
+    <div id="carouselExampleInterval" class="carousel slide carosello" data-bs-ride="carousel">
+      <div class="carousel-inner" style="height: 400px; border-radius: 50px;">
+        <div class="carousel-item" :class="index == 0 ? 'active' : ''" data-bs-interval="1500"
+          v-for="(apartment, index) in store.apartments">
+          <img :src="apartment.image" class="d-block w-100"
+            style="height: 500px; width: auto; object-fit: cover; border-radius: 50px;" :alt="apartment.title">
+        </div>
+
       </div>
 
     </div>
 
   </div>
 
-
 </template>
 
 <style lang="scss" scoped>
-.title-ev {
-  color: white;
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
-  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000,
-    1.5px 1.5px 0 #000;
+.container-carousel {
+  position: relative;
+
+  .title-ev {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
+    z-index: 1;
+
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .carosello {

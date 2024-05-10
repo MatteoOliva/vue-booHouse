@@ -22,9 +22,9 @@ export default {
 <template>
     <div class="container-main ">
         <!-- CAROSELLO -->
-        <div class="row justify-content-center ">
-            <div class="col-6 ">
-                <carousel-apartments class="d-flex"></carousel-apartments>
+        <div class="row justify-content-center">
+            <div class="col-6  carosello">
+                <carousel-apartments class=""></carousel-apartments>
             </div>
         </div>
         <router-link :to="{ name: 'search' }" @click="store.fetchApartments()">
@@ -54,17 +54,25 @@ export default {
 
     .slogan-main {
         color: white;
-        font-size: 30px;
+        font-size: 24px;
         text-align: center;
         font-weight: bold;
 
         position: absolute;
-        top: 35px;
+        top: 60px;
         left: 50%;
         transform: translateX(-50%);
         text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000,
             1.5px 1.5px 0 #000;
     }
+
+    .carosello {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
 }
 
 .blood-button {
