@@ -24,8 +24,7 @@ export default {
         <!-- CAROSELLO -->
         <div class="row justify-content-center ">
             <div class="col-6 ">
-                <carousel-apartments class=""></carousel-apartments>
-
+                <carousel-apartments class="d-flex"></carousel-apartments>
             </div>
         </div>
         <router-link :to="{ name: 'search' }" @click="store.fetchApartments()">
@@ -36,7 +35,7 @@ export default {
 
         <div class="slogan-main">
             Dove il brivido incontra il comfort. Prenota la tua fuga da favola... con
-            un tocco di mistero! <br />
+            un tocco di mistero!
             <br />
             Trova il tuo alloggio da Paura!
         </div>
@@ -54,12 +53,12 @@ export default {
 
     .slogan-main {
         color: white;
-        font-size: 30px;
+        font-size: 25px;
         text-align: center;
         font-weight: bold;
 
         position: absolute;
-        bottom: 35%;
+        top: 35px;
         left: 50%;
         transform: translateX(-50%);
         text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000,
