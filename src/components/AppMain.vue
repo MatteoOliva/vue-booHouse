@@ -49,11 +49,12 @@ export default {
     background-position: center;
     background-size: cover;
     position: relative;
+    overflow: hidden;
 
 
     .slogan-main {
         color: white;
-        font-size: 25px;
+        font-size: 30px;
         text-align: center;
         font-weight: bold;
 
