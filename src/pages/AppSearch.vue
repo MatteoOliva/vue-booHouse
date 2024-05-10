@@ -16,7 +16,6 @@ export default {
             lon: "",
             address: '',
             radius: "",
-            // resultAddres: [],
             clickResult: '',
             radius: 20,
         };
@@ -52,60 +51,7 @@ export default {
                 });
         },
 
-        // fetchAutocomplete() {
-        //     // this.resultAddres = [];
-        //     //   console.log("ciao");
-        //     if (this.apartmentsTerms.length > 3) {
 
-        //         const apiKey = "8TVYgA3vbL771Lx9e0MWAxKazyXxbjdn";
-        //         const url =
-        //             "https://api.tomtom.com/search/2/geocode/" +
-        //             this.apartmentsTerms +
-        //             ".json?countrySet=IT&language=it-IT&key=" +
-        //             apiKey;
-        //         // console.log(url);
-        //         // console.log(apiKey)
-        //         axios.get(url).then((response) => {
-        //             const results = response.data.results;
-        //             //   console.log(results);
-        //             const container = document.getElementById("autocomplete-results");
-        //             // Pulisce i vecchi risultati
-        //             container.innerHTML = "";
-
-        //             if (results.length > 0) {
-        //                 results.forEach((result) => {
-        //                     const div = document.createElement("a");
-        //                     const resultAddres = {
-        //                         address: result.address.freeformAddress,
-        //                         lat: result.position.lat,
-        //                         lon: result.position.lon,
-        //                     };
-
-        //                     // this.resultAddres.push(resultAddres);
-
-
-        //                     div.innerHTML = result.address.freeformAddress;
-        //                     // div.setAttribute('id', index);
-        //                     // Classi di Bootstrap per gli elementi della lista
-        //                     div.classList.add("list-group-item", "list-group-item-action");
-        //                     div.onclick = function () {
-        //                         document.getElementById("address").value =
-        //                             result.address.freeformAddress;
-        //                         // this.clickResult = this.id;
-        //                         this.address = result.address.freeformAddress;
-        //                         this.lat = resultAddres.lat;
-        //                         this.lon = resultAddres.lon;
-        //                         console.log(this.lat, this.lon, this.address);
-
-        //                         // Nasconde i risultati dopo la selezione
-        //                         container.innerHTML = "";
-        //                     };
-        //                     container.appendChild(div);
-        //                 });
-        //             }
-        //         });
-        //     }
-        // },
 
         fetchAutocomplete() {
             if (this.apartmentsTerms.length > 3) {
@@ -135,12 +81,27 @@ export default {
             }
         },
 
-        fetchFilterApartments(lat, lon, radius, search_term) {
+        fetchFilterApartments() {
+            const lat = this.lat;
+            const lon = this.lon;
+            const radius = this.radius;
+            const search_term = this.address;
+            console.log(lat, lon, radius, search_term);
             axios.get(`http://127.0.0.1:8000/api/apartments/search/ordered/${search_term}/${lat}/${lon}/${radius}`).then((response) => {
+
                 store.apartments = response.data;
                 console.log(response.data);
             });
-        }
+        },
+
+        validateRadius() {
+            if (this.radius < 1) {
+                this.radius = 1;
+            } else if (this.radius > 20) {
+                this.radius = 20;
+            }
+            console.log(this.radius);
+        },
 
     },
 
@@ -149,15 +110,18 @@ export default {
     mounted() {
         store.fetchAllApartments();
     },
-    // v-if="apartmentsTerms == '' ? store.fetchApartmentsSponsor() : fetchApartments(apartmentsTerms)"
 };
 </script>
 
 <template>
     <div class="container-main">
+
         <div class="container">
-            <button class="btn btn-primary"
-                @click="fetchFilterApartments(this.lat, this.lon, this.radius, this.address)">Invia</button>
+            <div class="input-group flex-nowrap">
+                <input type="number" class="form-control" placeholder="Inserisci radius" v-model.number="radius"
+                    @input="validateRadius" min="1" max="20" aria-describedby="addon-wrapping" required>
+            </div>
+            <button class="btn btn-primary" @click="fetchFilterApartments()">Invia</button>
             <form onsubmit="event.preventDefault();" role="search" class="my-5">
                 <label for="search" class="">Search for stuff</label>
                 <input @keyup="fetchAutocomplete()" v-model="apartmentsTerms" id="address" type="search"
