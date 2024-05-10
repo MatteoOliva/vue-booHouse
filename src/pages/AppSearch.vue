@@ -12,12 +12,18 @@ export default {
             api,
             title: "SEARCH PAGE",
             apartmentsTerms: "",
-            lat: "",
-            lon: "",
-            address: '',
-            radius: "",
             clickResult: '',
-            radius: 20,
+            query: {
+                lat: "",
+                lon: "",
+                address: "",
+                rooms: "",
+                beds: "",
+                toilets: "",
+                mq: "",
+                services: [],
+                radius: 20,
+            },
         };
     },
 
@@ -68,11 +74,11 @@ export default {
                         div.innerHTML = result.address.freeformAddress;
                         div.classList.add("list-group-item", "list-group-item-action");
                         div.onclick = () => {
-                            this.address = result.address.freeformAddress;
-                            this.lat = result.position.lat;
-                            this.lon = result.position.lon;
+                            this.query.address = result.address.freeformAddress;
+                            this.query.lat = result.position.lat;
+                            this.query.lon = result.position.lon;
                             this.apartmentsTerms = result.address.freeformAddress;
-                            console.log(this.lat, this.lon, this.address);
+                            console.log(this.query.lat, this.query.lon, this.query.address);
                             container.innerHTML = ""; // Nasconde i risultati dopo la selezione
                         };
                         container.appendChild(div);
@@ -82,10 +88,10 @@ export default {
         },
 
         fetchFilterApartments() {
-            const lat = this.lat;
-            const lon = this.lon;
-            const radius = this.radius;
-            const search_term = this.address;
+            const search_term = this.query.address;
+            const lat = this.query.lat;
+            const lon = this.query.lon;
+            const radius = this.query.radius;
             console.log(lat, lon, radius, search_term);
             axios.get(`http://127.0.0.1:8000/api/apartments/search/ordered/${search_term}/${lat}/${lon}/${radius}`).then((response) => {
 
@@ -95,13 +101,20 @@ export default {
         },
 
         validateRadius() {
-            if (this.radius < 1) {
-                this.radius = 1;
-            } else if (this.radius > 20) {
-                this.radius = 20;
+            if (this.query.radius < 1) {
+                this.query.radius = 1;
+            } else if (this.query.radius > 20) {
+                this.query.radius = 20;
             }
-            console.log(this.radius);
+            console.log(this.query.radius);
         },
+
+        fetchServices() {
+            axios.get(`http://127.0.0.1:8000/api/services/`).then((response) => {
+                this.query.services = response.data.results;
+                console.log(response);
+            });
+        }
 
     },
 
@@ -109,9 +122,11 @@ export default {
 
     mounted() {
         store.fetchAllApartments();
+
+        this.fetchServices();
     },
 };
-</script>
+;</script>
 
 <template>
     <div class="container-main">
@@ -131,7 +146,7 @@ export default {
             </div>
 
             <!-- MODALE -->
-            <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade modal-xl" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -152,7 +167,7 @@ export default {
                                 <div>
                                     <p class="m-0">Raggio di Ricerca</p>
                                     <input type="number" class="form-control" placeholder="Inserisci radius"
-                                        v-model.number="radius" @input="validateRadius" min="1" max="20"
+                                        v-model.number="query.radius" @input="validateRadius" min="1" max="20"
                                         aria-describedby="addon-wrapping" required>
                                 </div>
 
@@ -160,7 +175,7 @@ export default {
                                 <div>
                                     <p class="m-0">Numero Stanze</p>
                                     <input type="number" class="form-control" placeholder="N° Stanze"
-                                        aria-describedby="addon-wrapping" min="0" required>
+                                        v-model.number="query.rooms" aria-describedby="addon-wrapping" min="0" required>
                                 </div>
 
 
@@ -169,28 +184,35 @@ export default {
                                 <div>
                                     <p class="m-0">Numero Bagni</p>
                                     <input type="number" class="form-control" placeholder="N° Bagni"
-                                        aria-describedby="addon-wrapping" min="0" required>
+                                        v-model.number="query.toilets" aria-describedby="addon-wrapping" min="0"
+                                        required>
                                 </div>
 
                                 <!-- LETTI -->
                                 <div>
                                     <p class="m-0">Numero Letti</p>
                                     <input type="number" class="form-control" placeholder="N° Letti"
-                                        aria-describedby="addon-wrapping" min="0" required>
+                                        v-model.number="query.beds" aria-describedby="addon-wrapping" min="0" required>
                                 </div>
 
                                 <!-- MQ -->
                                 <div>
                                     <p class="m-0">Metri Quadri</p>
-                                    <input type="number" class="form-control" placeholder="Mq"
+                                    <input type="number" class="form-control" placeholder="Mq" v-model.number="query.mq"
                                         aria-describedby="addon-wrapping" min="0" required>
                                 </div>
 
                                 <!-- SERVIZI -->
                                 <div>
-                                    <p class="m-0">Servizi Aggiuntivi</p>
-                                    <input type="number" class="form-control" aria-describedby="addon-wrapping"
-                                        required>
+
+                                    <div class="m-0 services-details d-flex align-items-center gap-1 my-1"
+                                        v-for="service in query.services"> <input class="form-check-input"
+                                            type="checkbox" :value="service.id" id="flexCheckDefault">
+                                        <img :src="service.icon" alt="">{{
+                                            service.name }}
+
+                                    </div>
+
                                 </div>
 
 
@@ -231,5 +253,11 @@ export default {
     background-size: cover;
     position: relative;
     overflow: auto;
+
+    .services-details {
+        img {
+            width: 25px;
+        }
+    }
 }
 </style>

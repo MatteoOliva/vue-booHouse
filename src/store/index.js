@@ -2,6 +2,7 @@ import axios from "axios";
 import { reactive } from "vue";
 
 export const api = {
+    basicsUrl: "http://127.0.0.1:8000/api",
     baseUrl: "http://127.0.0.1:8000/api/apartments/",
     urlSponsor: "http://127.0.0.1:8000/api/apartments/sponsored/all",
 };
