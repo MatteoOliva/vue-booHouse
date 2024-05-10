@@ -137,6 +137,7 @@ export default {
 
         fetchFilterApartments(lat, lon, radius, search_term) {
             axios.get(`http://127.0.0.1:8000/api/apartments/search/ordered/${search_term}/${lat}/${lon}/${radius}`).then((response) => {
+                store.apartments = response.data;
                 console.log(response.data);
             });
         }
