@@ -12,22 +12,23 @@ export default {
 </script>
 
 <template>
-  <div class="col">
-    <!-- <router-link
+  <!-- <div class="col"> -->
+  <!-- <router-link
       :to="{ name: 'project', params: { slug: project.slug } }"
       class="card-btn"
     > -->
-    <div class="card h-100">
-      <div class="cover">
-        <img v-if="apartment.image" :src="apartment.image" class="card-img-top" />
-      </div>
-      <div class="card-body">
+  <!-- <div class="card h-100"> -->
+  <div class="cover">
+    <img v-if="apartment.image" :src="apartment.image" class="card-img-top" />
+  </div>
+  <h5>{{ apartment }}</h5>
+  <!-- <div class="card-body">
         <h5 class="card-title">{{ apartment.title }}</h5>
         <p>{{ apartment.address }}</p>
       </div>
-    </div>
-    <!-- </router-link> -->
-  </div>
+    </div> -->
+  <!-- </router-link> -->
+  <!-- </div> -->
 </template>
 
 <style lang="scss" scoped></style>

@@ -11,20 +11,17 @@ export default {
 
 <template>
   <div class="col">
-    <!-- <router-link
-      :to="{ name: 'project', params: { slug: project.slug } }"
-      class="card-btn"
-    > -->
-    <div class="card h-100">
-      <div class="cover">
-        <img v-if="apartment.image" :src="apartment.image" class="card-img-top" />
+    <router-link :to="{ name: 'details', params: { slug: apartment.slug } }" class="card-btn">
+      <div class="card h-100">
+        <div class="cover">
+          <img v-if="apartment.image" :src="apartment.image" class="card-img-top" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ apartment.title }}</h5>
+          <p>{{ apartment.address }}</p>
+        </div>
       </div>
-      <div class="card-body">
-        <h5 class="card-title">{{ apartment.title }}</h5>
-        <p>{{ apartment.address }}</p>
-      </div>
-    </div>
-    <!-- </router-link> -->
+    </router-link>
   </div>
 </template>
 

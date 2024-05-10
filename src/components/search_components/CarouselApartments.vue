@@ -5,7 +5,7 @@ import axios from "axios";
 import { store, api } from "../../store";
 
 // importo card
-import CardApartment from "./CardApartment.vue";
+// import CardApartment from "./CardApartment.vue";
 
 export default {
   data() {
@@ -15,8 +15,7 @@ export default {
     };
   },
 
-  components: { CardApartment },
-
+  // components: { CardApartment },
   created() {
     store.fetchApartmentsSponsor();
   },
@@ -29,17 +28,17 @@ export default {
     <div class="text-center title-ev">
       <div>Alloggi Infestati in evidenza...</div>
     </div>
-    <div id="carouselExampleInterval" class="carousel slide carosello" data-bs-ride="carousel">
+    < <div id="carouselExampleInterval" class="carousel slide carosello" data-bs-ride="carousel">
       <div class="carousel-inner" style="height: 400px; border-radius: 50px;">
         <div class="carousel-item" :class="index == 0 ? 'active' : ''" data-bs-interval="1500"
-          v-for="(apartment, index) in store.apartments">
+          v-for="(apartment, index) in store.apartments.sponsored_apartments">
           <img :src="apartment.image" class="d-block w-100"
             style="height: 500px; width: auto; object-fit: cover; border-radius: 50px;" :alt="apartment.title">
         </div>
 
       </div>
 
-    </div>
+  </div>
 
   </div>
 
@@ -70,7 +69,7 @@ export default {
   height: 100px;
 
   img: {
-    max-height: 100%;
+    // max-height: 100%;
   }
 }
 </style>

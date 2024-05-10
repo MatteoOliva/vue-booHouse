@@ -10,15 +10,30 @@ export default {
     return {
       store,
       api,
+      apartment: {},
 
     };
   },
 
   components: { AppMain, AppApartmentDetails },
 
-  created() {
-    store.fetchAllApartments();
+  methods: {
+    fetchApartmentDetails() {
+
+      const apartmentSlug = this.$route.params.slug;
+      axios
+        .get(`http://127.0.0.1:8000/api/apartments/${apartmentSlug}`)
+        .then((response) => {
+          console.log(response.data);
+          this.apartment = response.data;
+        });
+    },
   },
+
+  created() {
+    this.fetchApartmentDetails();
+  }
+
 
 };
 
@@ -26,7 +41,8 @@ export default {
 
 <template>
   <div class="container-app-details">
-    <AppApartmentDetails>
+    <AppApartmentDetails :apartment="this.apartment">
+
 
 
     </AppApartmentDetails>

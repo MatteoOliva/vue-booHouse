@@ -32,11 +32,7 @@ export default {
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" />
             </div>
         </router-link>
-        <!-- <router-link :to="{ name: 'details' }" @click="store.fetchApartments()">
-            <div class="blood-button">
-                <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" />
-            </div>
-        </router-link> -->
+
 
         <div class="slogan-main">
             Dove il brivido incontra il comfort. Prenota la tua fuga da favola... con
