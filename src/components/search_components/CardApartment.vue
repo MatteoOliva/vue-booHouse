@@ -1,7 +1,7 @@
 <script>
 export default {
   // ricevo il contenuto dell'appartamento via props
-  props: { apartment: Object },
+  props: { apartment: Object, isDetail: Boolean },
 
   data() {
     return {};

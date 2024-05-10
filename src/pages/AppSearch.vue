@@ -117,15 +117,38 @@ export default {
     <div class="container-main">
 
         <div class="container">
-            <div class="input-group flex-nowrap">
-                <input type="number" class="form-control" placeholder="Inserisci radius" v-model.number="radius"
-                    @input="validateRadius" min="1" max="20" aria-describedby="addon-wrapping" required>
-            </div>
+            
             <button class="btn btn-primary" @click="fetchFilterApartments()">Invia</button>
             <form onsubmit="event.preventDefault();" role="search" class="my-5">
                 <label for="search" class="">Search for stuff</label>
                 <input @keyup="fetchAutocomplete()" v-model="apartmentsTerms" id="address" type="search"
                     placeholder="Cerca appartamento..." autofocus required autocomplete="off" />
+                    <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          Launch demo modal
+                        </button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade modal-dialog modal-dialog-centered modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="input-group flex-nowrap">
+                                    <input type="number" class="form-control" placeholder="Inserisci radius" v-model.number="radius"
+                                    @input="validateRadius" min="1" max="20" aria-describedby="addon-wrapping" required>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                 <div id="autocomplete-results" class="list-group position-absolute z-1"></div>
             </form>
 
