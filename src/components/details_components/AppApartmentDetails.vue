@@ -33,7 +33,7 @@ export default {
   <!-- </div> -->
 
   <!-- BOTTONE INVIA MESSAGGIO -->
-  <message-button></message-button>
+  <message-button :apartment="apartment"></message-button>
 </template>
 
 <style lang="scss" scoped></style>
