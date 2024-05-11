@@ -1,4 +1,6 @@
 <script>
+// importo componente ivia messaggio
+import MessageButton from "./MessageButton.vue";
 
 export default {
   props: { apartment: Object },
@@ -7,8 +9,8 @@ export default {
     return {};
   },
 
+  components: { MessageButton },
 };
-
 </script>
 
 <template>
@@ -29,6 +31,9 @@ export default {
     </div> -->
   <!-- </router-link> -->
   <!-- </div> -->
+
+  <!-- BOTTONE INVIA MESSAGGIO -->
+  <message-button></message-button>
 </template>
 
 <style lang="scss" scoped></style>
