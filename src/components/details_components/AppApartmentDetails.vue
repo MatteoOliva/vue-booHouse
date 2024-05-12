@@ -33,7 +33,10 @@ export default {
   <!-- </div> -->
 
   <!-- BOTTONE INVIA MESSAGGIO -->
-  <message-button :apartment="apartment"></message-button>
+  <message-button
+    v-if="apartment"
+    :apartment_id="this.apartment.id"
+  ></message-button>
 </template>
 
 <style lang="scss" scoped></style>
