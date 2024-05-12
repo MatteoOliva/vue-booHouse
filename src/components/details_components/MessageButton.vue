@@ -23,14 +23,34 @@ export default {
 
   methods: {
     createMessage() {
+      // salvo dati del form
       let formData = {
         apartment_id: this.apartment_id,
         email: document.getElementById("email").value,
         content: document.getElementById("content").value,
       };
+
       axios.post(api.basicsUrl + "/message", formData).then((response) => {
+        this.isSending = false;
         console.log(response);
+
+        // se la risposta dal db è positiva
+        if (response.data.response) {
+          this.resetForm();
+          this.reloadPage();
+          alert("messaggio inviato con successo");
+        }
       });
+    },
+
+    // ricarico la pagina
+    reloadPage() {
+      window.location.reload();
+    },
+    // resetto il form
+    resetForm() {
+      this.email = "";
+      this.content = "";
     },
   },
 };
