@@ -1,10 +1,38 @@
 <script>
+// importo axios
+import axios from "axios";
+// importo store
+import { store, api } from "../../store";
+
 export default {
   data() {
-    return {};
+    return {
+      store,
+      api,
+      // formData: {
+      //   apartment_id: this.apartment_id,
+      //   email: "",
+      //   content: "",
+      // },
+    };
   },
 
-  props: { apartment: Object },
+  props: {
+    apartment_id: Number,
+  },
+
+  methods: {
+    createMessage() {
+      let formData = {
+        apartment_id: this.apartment_id,
+        email: document.getElementById("email").value,
+        content: document.getElementById("content").value,
+      };
+      axios.post(api.basicsUrl + "/message", formData).then((response) => {
+        console.log(response);
+      });
+    },
+  },
 };
 </script>
 
@@ -31,7 +59,7 @@ export default {
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">
-            Scrivi a {{ apartment.title }}
+            Scrivi a {{ this.apartment_id }}
           </h1>
           <button
             type="button"
@@ -41,32 +69,47 @@ export default {
           ></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form method="post" @submit.prevent="createMessage">
+            <!-- <input
+              type="hidden"
+              name="apartment_id"
+              for="apartment_id"
+              v-model="this.apartment_id"
+            /> -->
             <div class="mb-3">
               <label for="email" class="col-form-label">E-Mail:</label>
-              <input type="email" class="form-control" id="email" />
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                v-model="email"
+                ref="email"
+                autocomplete="email"
+                required
+              />
             </div>
             <div class="mb-3">
-              <label for="message-text" class="col-form-label"
-                >Messaggio:</label
-              >
+              <label for="content" class="col-form-label">Messaggio:</label>
               <textarea
                 class="form-control"
-                id="message-text"
+                id="content"
                 rows="5"
+                ref="content"
+                v-model="content"
+                required
               ></textarea>
             </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Chiudi
+              </button>
+              <button type="submit" class="btn btn-primary">Invia</button>
+            </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Chiudi
-          </button>
-          <button type="button" class="btn btn-primary">Invia</button>
         </div>
       </div>
     </div>
