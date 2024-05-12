@@ -123,7 +123,7 @@ export default {
         fetchServices() {
             axios.get(`http://127.0.0.1:8000/api/services/`).then((response) => {
                 this.services = response.data.results;
-                console.log(response);
+                console.log(this.services);
             });
         }
 
@@ -159,7 +159,7 @@ export default {
             <!-- MODALE -->
             <div class="modal fade modal-xl" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog  bg-dark">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Ricerca Avanzata</h1>

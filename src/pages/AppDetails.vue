@@ -28,10 +28,20 @@ export default {
           this.apartment = response.data;
         });
     },
+
+    fetchServices() {
+      axios.get(`http://127.0.0.1:8000/api/services/`).then((response) => {
+        this.services = response.data.results;
+        console.log(this.services);
+      });
+    }
   },
 
   created() {
     this.fetchApartmentDetails();
+
+    this.fetchServices();
+
   }
 
 

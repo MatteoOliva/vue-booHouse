@@ -65,7 +65,7 @@ export default {
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content  bg-dark">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">
             Scrivi a {{ this.apartment_id }}
@@ -87,7 +87,7 @@ export default {
             </div>
             <div class="mb-3">
               <label for="content" class="col-form-label">Messaggio:</label>
-              <textarea class="form-control" id="content" rows="5" ref="content" v-model="content" required></textarea>
+              <textarea class="form-control" id="content" rows="20" ref="content" v-model="content" required></textarea>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

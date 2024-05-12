@@ -2,26 +2,33 @@
 // importo componente ivia messaggio
 import MessageButton from "./MessageButton.vue";
 
+
 export default {
   props: { apartment: Object },
 
+  components: { MessageButton },
+
   data() {
-    return {};
+    return {
+
+    };
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
   },
 
-  components: { MessageButton },
+
+
 };
 </script>
 
 <template>
-  <!-- <div class="col"> -->
-  <!-- <router-link
-      :to="{ name: 'project', params: { slug: project.slug } }"
-      class="card-btn"
-    > -->
+
   <div class="container-card">
 
-    <div class="card main-card">
+    <div class="card main-card  text-white card-grunge-bg">
 
       <div class="row">
 
@@ -29,24 +36,34 @@ export default {
           <h2>Alloggio: <strong>{{ apartment.title }}</strong></h2>
 
           <div class="row">
-            <h4 class="col-12">{{ apartment.address }}</h4>
+            <h5 class="col-12 mt-2">{{ apartment.address }}</h5>
           </div>
-
-          <div class="row mt-5">
+          <hr>
+          <div class="row">
             <div class="col-6">
-              <h5>Metri Quadri: {{ apartment.mq }}</h5>
+              <h5>Metri Quadri: <strong>{{ apartment.mq }}</strong></h5>
             </div>
             <div class="col-6">
-              <h5>Camere: {{ apartment.rooms }}</h5>
+              <h5>Camere: <strong>{{ apartment.rooms }}</strong></h5>
             </div>
           </div>
 
           <div class="row mt-4">
             <div class="col-6">
-              <h5>Letti: {{ apartment.beds }}</h5>
+              <h5>Letti: <strong>{{ apartment.beds }}</strong></h5>
             </div>
             <div class="col-6">
-              <h5>Bagni: {{ apartment.toilets }}</h5>
+              <h5>Bagni: <strong>{{ apartment.toilets }}</strong></h5>
+            </div>
+
+            <h4 class="m-0 mt-2"><strong>Servizi Disponili</strong></h4>
+            <div class="col-12 d-flex justify-content-evenly gap-4">
+              <div v-for="service in apartment.services">
+                <div class="d-flex flex-column align-items-center gap-2 mt-1">
+                  {{ service.name }}
+                  <img :src="service.icon" alt="" style="width: 50px;">
+                </div>
+              </div>
             </div>
           </div>
 
@@ -63,31 +80,29 @@ export default {
       </div>
 
 
-      <div class="row">
+      <div class="row flex-column flex-grow-1">
 
-        <div class="col-12 mt-4 text-center">
+        <div class="col-12 d-flex    mt-4 text-center">
           <h5>{{ apartment.description }}</h5>
         </div>
 
       </div>
 
-      <div>
-        <message-button v-if="apartment" :apartment_id="this.apartment.id"></message-button>
+      <div class="d-flex justify-content-between ">
+        <button @click="goBack" class="btn btn-primary">Torna agli Alloggi</button>
+
+
+        <message-button v-if="apartment" :apartment_id="this.apartment.title"></message-button>
+
       </div>
 
     </div>
 
   </div>
-  {{ apartment }}
+  <div> </div>
 
 
-  <!-- <div class="card-body">
-    <h5 class="card-title">{{ apartment.title }}</h5>
-    <p>{{ apartment.address }}</p>
-  </div>
-</div> -->
-  <!-- </router-link> -->
-  <!-- </div> -->
+
 
 
 
@@ -99,20 +114,20 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  border: 2px dashed red;
 
   .main-card {
-
-
-    padding: 3%;
-    width: 90%;
+    padding: 1%;
+    width: 70%;
     height: 90%;
     box-shadow: 15px 15px 15px rgba($color: #000000, $alpha: 0.7);
+    background-color: rgba(0, 0, 0, 0.7);
+
 
     .container-main-img {
       border-radius: 15px;
       height: 300px;
       overflow: hidden;
+      box-shadow: 5px 5px 5px rgba($color: black, $alpha: 0.7);
 
 
 
