@@ -24,7 +24,7 @@ export default {
       <div class="row">
         <div class="col-6 text-center mt-4">
           <h2>
-            Alloggio: <strong>{{ apartment.title }}</strong>
+            Alloggioi: <strong>{{ apartment.title }}</strong>
           </h2>
 
           <div class="row">
@@ -86,10 +86,7 @@ export default {
           Torna agli Alloggi
         </button>
 
-        <message-button
-          v-if="apartment"
-          :apartment="this.apartment"
-        ></message-button>
+        <message-button v-if="apartment" :apartment="this.apartment"></message-button>
       </div>
     </div>
   </div>
