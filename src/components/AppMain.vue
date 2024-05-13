@@ -28,9 +28,9 @@ export default {
             </div>
         </div>
         <!-- <router-link :to="{ name: 'search' }" @click="store.fetchApartments()"> -->
-        <div class="blood-button">
+        <!-- <div class="blood-button"> -->
             <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" /> -->
-        </div>
+        <!-- </div> -->
         <!-- </router-link> -->
 
 
@@ -71,7 +71,7 @@ export default {
 
     .carosello {
         position: absolute;
-        bottom: 50%;
+        bottom: 20%;
         left: 50%;
         transform: translateX(-50%);
     }
