@@ -16,3 +16,5 @@ export default {
     <AppSearch></AppSearch>
 
 </template>
+
+<style lang="scss" scoped></style>

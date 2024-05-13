@@ -254,6 +254,7 @@ export default {
   background-size: cover;
   position: relative;
   overflow: auto;
+  scrollbar-width: none;
 
   .services-details {
     img {

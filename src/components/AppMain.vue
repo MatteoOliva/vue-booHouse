@@ -29,7 +29,7 @@ export default {
         </div>
         <!-- <router-link :to="{ name: 'search' }" @click="store.fetchApartments()"> -->
         <!-- <div class="blood-button"> -->
-            <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" /> -->
+        <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" /> -->
         <!-- </div> -->
         <!-- </router-link> -->
 
@@ -53,6 +53,7 @@ export default {
     background-size: cover;
     position: relative;
     overflow: auto;
+    scrollbar-width: none;
 
 
     .slogan-main {
