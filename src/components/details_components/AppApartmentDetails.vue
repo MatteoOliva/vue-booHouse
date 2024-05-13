@@ -10,12 +10,44 @@ export default {
   data() {
     return {};
   },
+
+  mounted() {
+    // Altre operazioni di inizializzazione, se presenti
+  },
+
+  watch: {
+    apartment: {
+      immediate: true,
+      handler(newVal) {
+        if (newVal) {
+          this.initMap();
+        }
+      }
+    }
+  },
+
   methods: {
     goBack() {
       this.$router.go(-1);
     },
-  },
-};
+
+    initMap() {
+      if (this.apartment && this.apartment.lon && this.apartment.lat) {
+        this.$nextTick(() => {
+          var map = tt.map({
+            key: 'Ad782pZsh2pBDjQwfgOfANAh3h59eK4D',
+            container: 'map',
+            center: [this.apartment.lon, this.apartment.lat],
+            zoom: 15
+          });
+          var marker = new tt.Marker().setLngLat([this.apartment.lon, this.apartment.lat]).addTo(map);
+        });
+      }
+    },
+  }
+}
+
+
 </script>
 
 <template>
@@ -24,7 +56,7 @@ export default {
       <div class="row">
         <div class="col-6 text-center mt-4">
           <h2>
-            Alloggioi: <strong>{{ apartment.title }}</strong>
+            Alloggio: <strong>{{ apartment.title }}</strong>
           </h2>
 
           <div class="row">
@@ -79,6 +111,11 @@ export default {
         <div class="col-12 d-flex mt-4 text-center">
           <h5>{{ apartment.description }}</h5>
         </div>
+      </div>
+
+      <!-- maps -->
+      <div v-if="apartment.lon && apartment.lat" class="col-12">
+      <div id="map" style="width: 100%; height: 300px;"></div>
       </div>
 
       <div class="d-flex justify-content-between">
