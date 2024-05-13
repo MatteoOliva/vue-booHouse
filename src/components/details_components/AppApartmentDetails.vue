@@ -12,7 +12,7 @@ export default {
   },
 
   mounted() {
-    // Altre operazioni di inizializzazione, se presenti
+    // Altre operazioni di inizializzazione
   },
 
   watch: {
@@ -107,24 +107,40 @@ export default {
         </div>
       </div>
 
-      <div class="row flex-column flex-grow-1">
+      <div class="row flex-column ">
         <div class="col-12 d-flex mt-4 text-center">
           <h5>{{ apartment.description }}</h5>
         </div>
       </div>
-
-      <!-- maps -->
-      <div v-if="apartment.lon && apartment.lat" class="col-12">
-      <div id="map" style="width: 100%; height: 300px;"></div>
+<!-- maps -->
+      <div class="row justify-content-center my-3">
+        <div class="col-2 flex-column d-flex justify-content-end align-items-center">
+          <div>
+          <button @click="goBack" class="btn btn-primary">
+          Torna agli Alloggi
+        </button>
       </div>
-
-      <div class="d-flex justify-content-between">
+        </div>
+        <div v-if="apartment.lon && apartment.lat" class="col-8">
+        <div id="map" style="width: 100%; height: 300px;" class="rounded-4"></div>
+        </div>
+        
+        <div class="col-2 flex-column d-flex justify-content-end align-items-center">
+          <div>
+          <message-button v-if="apartment" :apartment="this.apartment"></message-button>
+        </div>
+      </div>
+        
+    </div>
+      
+    <!-- <div class="d-flex justify-content-between">
         <button @click="goBack" class="btn btn-primary">
           Torna agli Alloggi
         </button>
 
         <message-button v-if="apartment" :apartment="this.apartment"></message-button>
-      </div>
+      </div> -->
+      
     </div>
   </div>
   <div></div>
@@ -143,6 +159,8 @@ export default {
     height: 90%;
     box-shadow: 15px 15px 15px rgba($color: #000000, $alpha: 0.7);
     background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+    scrollbar-width: none;
 
     .container-main-img {
       border-radius: 15px;
