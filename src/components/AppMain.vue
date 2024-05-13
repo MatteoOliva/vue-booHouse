@@ -24,14 +24,14 @@ export default {
         <!-- CAROSELLO -->
         <div class="row justify-content-center">
             <div class="col-6  carosello">
-                <carousel-apartments class=""></carousel-apartments>
+                <!-- <carousel-apartments class=""></carousel-apartments> -->
             </div>
         </div>
-        <router-link :to="{ name: 'search' }" @click="store.fetchApartments()">
-            <div class="blood-button">
-                <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" />
-            </div>
-        </router-link>
+        <!-- <router-link :to="{ name: 'search' }" @click="store.fetchApartments()"> -->
+        <div class="blood-button">
+            <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" />
+        </div>
+        <!-- </router-link> -->
 
 
         <div class="slogan-main">
@@ -40,6 +40,8 @@ export default {
             <br />
             Trova il tuo alloggio da Paura!
         </div>
+
+
     </div>
 </template>
 
@@ -50,7 +52,7 @@ export default {
     background-position: center;
     background-size: cover;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
 
 
     .slogan-main {

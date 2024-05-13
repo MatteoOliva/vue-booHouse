@@ -1,9 +1,9 @@
 <script>
-import AppMain from "../components/AppMain.vue";
+
 import axios from "axios";
 
 import { store, api } from "../store";
-import CardApartment from "../components/search_components/CardApartment.vue";
+import CardApartment from "./search_components/CardApartment.vue";
 
 export default {
   data() {
@@ -28,7 +28,7 @@ export default {
     };
   },
 
-  components: { AppMain, CardApartment },
+  components: { CardApartment },
 
   methods: {
     fetchApartments() {

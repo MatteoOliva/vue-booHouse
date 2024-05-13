@@ -20,8 +20,9 @@ export default {
           <h5 class="card-title"><font-awesome-icon icon="fa-solid fa-location-dot" /> {{ apartment.title }}</h5>
           <p>{{ apartment.address }}</p>
           <p v-if="apartment.distance"><strong>{{ apartment.distance }}</strong> Km dalla ricerca</p>
-          <p v-else="!apartment.distance"><strong>{{ apartment.distance }}</strong> <span>Km dalla ricerca</span>
-          </p>
+          <!-- <p v-else="apartment.distance === 0"><strong>{{ apartment.distance }}</strong> -->
+          <!-- <span></span>
+          </p> -->
 
         </div>
       </div>
