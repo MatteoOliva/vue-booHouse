@@ -10,7 +10,7 @@ export default {
     return {
       store,
       api,
-      email: 'test@test.test',
+      email: '',
       content: '',
     };
   },
@@ -127,7 +127,7 @@ export default {
                 v-model="email"
                 required 
               />
-              <span v-if="!isEmailValid">Email non valida</span>
+              <span v-if="!isEmailValid">Inserisci mail</span>
             </div>
             <div class="mb-3">
               <label for="content" class="col-form-label">Messaggio:</label>
