@@ -24,12 +24,12 @@ export default {
         <!-- CAROSELLO -->
         <div class="row justify-content-center">
             <div class="col-6  carosello">
-                <!-- <carousel-apartments class=""></carousel-apartments> -->
+                <carousel-apartments class=""></carousel-apartments>
             </div>
         </div>
         <!-- <router-link :to="{ name: 'search' }" @click="store.fetchApartments()"> -->
         <div class="blood-button">
-            <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" />
+            <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" /> -->
         </div>
         <!-- </router-link> -->
 
