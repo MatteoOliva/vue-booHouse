@@ -4,16 +4,14 @@ import axios from "axios";
 // importo store
 import { store, api } from "../../store";
 
+
 export default {
   data() {
     return {
       store,
       api,
-      // formData: {
-      //   apartment_id: this.apartment_id,
-      //   email: "",
-      //   content: "",
-      // },
+      email: 'test@test.test',
+      content: '',
     };
   },
 
@@ -22,7 +20,21 @@ export default {
   },
 
   methods: {
+
+   
     createMessage() {
+      
+      if (this.isEmailValid && this.isContentValid) {
+        // Form is valid, submit data (e.g., send to server)
+        console.log('email inviata con successo');
+        // Reset form after successful submission (optional)
+        this.email = '';
+        this.content = '';
+      } else {
+        // Form is invalid, prevent submission
+        console.log('Correggi la email prima di inviarla');
+      };
+    
       // salvo dati del form
       let formData = {
         apartment_id: this.apartment.id,
@@ -52,8 +64,21 @@ export default {
       this.email = "";
       this.content = "";
     },
+    
   },
+
+  computed: {
+    isEmailValid() {
+      const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+      return emailRegex.test(this.email);
+    },
+    isContentValid() {
+      return this.content.length >= 10;
+    },
+
+},
 };
+
 </script>
 
 <template>
@@ -89,24 +114,20 @@ export default {
           ></button>
         </div>
         <div class="modal-body">
-          <form method="post" @submit.prevent="createMessage">
-            <!-- <input
-              type="hidden"
-              name="apartment_id"
-              for="apartment_id"
-              v-model="this.apartment_id"
-            /> -->
+          <form id="messageform" method="post" @submit.prevent="createMessage">
+            
             <div class="mb-3">
               <label for="email" class="col-form-label">E-Mail:</label>
               <input
                 type="email"
                 class="form-control"
                 id="email"
-                v-model="email"
                 ref="email"
                 autocomplete="email"
-                required
+                v-model="email"
+                required 
               />
+              <span v-if="!isEmailValid">Email non valida</span>
             </div>
             <div class="mb-3">
               <label for="content" class="col-form-label">Messaggio:</label>
@@ -116,8 +137,9 @@ export default {
                 rows="20"
                 ref="content"
                 v-model="content"
-                required
+                required  
               ></textarea>
+              <span v-if="!isContentValid">Il contenuto deve essere di almeno 10 caratteri.</span>
             </div>
             <div class="modal-footer">
               <button
@@ -127,7 +149,7 @@ export default {
               >
                 Chiudi
               </button>
-              <button type="submit" class="btn btn-primary">Invia</button>
+              <button type="submit" class="btn btn-primary" >Invia</button>
             </div>
           </form>
         </div>
