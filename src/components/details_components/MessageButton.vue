@@ -4,14 +4,15 @@ import axios from "axios";
 // importo store
 import { store, api } from "../../store";
 
+import Swal from "sweetalert2";
 
 export default {
   data() {
     return {
       store,
       api,
-      email: '',
-      content: '',
+      email: "",
+      content: "",
     };
   },
 
@@ -20,21 +21,18 @@ export default {
   },
 
   methods: {
-
-   
     createMessage() {
-      
       if (this.isEmailValid && this.isContentValid) {
         // Form is valid, submit data (e.g., send to server)
-        console.log('email inviata con successo');
+        console.log("email inviata con successo");
         // Reset form after successful submission (optional)
-        this.email = '';
-        this.content = '';
+        // this.email = "";
+        // this.content = "";
       } else {
         // Form is invalid, prevent submission
-        console.log('Correggi la email prima di inviarla');
-      };
-    
+        console.log("Correggi la email prima di inviarla");
+      }
+
       // salvo dati del form
       let formData = {
         apartment_id: this.apartment.id,
@@ -48,23 +46,32 @@ export default {
 
         // se la risposta dal db è positiva
         if (response.data.response) {
-          this.resetForm();
-          this.reloadPage();
-          alert("messaggio inviato con successo");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Il messaggio è stato inviato",
+            showConfirmButton: false,
+            timer: 4500,
+          });
+          // alert("messaggio inviato con successo");
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         }
+        // this.resetForm();
       });
     },
 
     // ricarico la pagina
-    reloadPage() {
-      window.location.reload();
-    },
+    // reloadPage() {
+    //   window.location.reload();
+    // },
     // resetto il form
     resetForm() {
       this.email = "";
       this.content = "";
     },
-    
   },
 
   computed: {
@@ -75,10 +82,8 @@ export default {
     isContentValid() {
       return this.content.length >= 10;
     },
-
-},
+  },
 };
-
 </script>
 
 <template>
@@ -115,7 +120,6 @@ export default {
         </div>
         <div class="modal-body">
           <form id="messageform" method="post" @submit.prevent="createMessage">
-            
             <div class="mb-3">
               <label for="email" class="col-form-label">E-Mail:</label>
               <input
@@ -125,7 +129,7 @@ export default {
                 ref="email"
                 autocomplete="email"
                 v-model="email"
-                required 
+                required
               />
               <span v-if="!isEmailValid">Inserisci mail</span>
             </div>
@@ -137,9 +141,11 @@ export default {
                 rows="20"
                 ref="content"
                 v-model="content"
-                required  
+                required
               ></textarea>
-              <span v-if="!isContentValid">Il contenuto deve essere di almeno 10 caratteri.</span>
+              <span v-if="!isContentValid"
+                >Il contenuto deve essere di almeno 10 caratteri.</span
+              >
             </div>
             <div class="modal-footer">
               <button
@@ -149,7 +155,7 @@ export default {
               >
                 Chiudi
               </button>
-              <button type="submit" class="btn btn-primary" >Invia</button>
+              <button type="submit" class="btn btn-primary">Invia</button>
             </div>
           </form>
         </div>
