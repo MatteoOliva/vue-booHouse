@@ -9,6 +9,7 @@ export const api = {
 
 export const store = reactive({
   apartments: [],
+  sponsoredApartments: [],
 
   //   chiamata ricerca appartamenti
   fetchApartments(searchTerm) {
@@ -28,7 +29,7 @@ export const store = reactive({
   //   chiamata per appartamenti sponsorizzati
   fetchApartmentsSponsor() {
     axios.get(`${api.urlSponsor}`).then((response) => {
-      this.apartments = response.data;
+      this.sponsoredApartments = response.data;
       console.log(this.apartments);
     });
   },
