@@ -112,35 +112,35 @@ export default {
           <h5>{{ apartment.description }}</h5>
         </div>
       </div>
-<!-- maps -->
+      <!-- maps -->
       <div class="row justify-content-center my-3">
         <div class="col-2 flex-column d-flex justify-content-end align-items-center">
           <div>
-          <button @click="goBack" class="btn btn-primary">
-          Torna agli Alloggi
-        </button>
-      </div>
+            <button @click="goBack" class="btn btn-primary">
+              Torna agli Alloggi
+            </button>
+          </div>
         </div>
         <div v-if="apartment.lon && apartment.lat" class="col-8">
-        <div id="map" style="width: 100%; height: 300px;" class="rounded-4"></div>
+          <div id="map" style="width: 100%; height: 200px;" class="rounded-4"></div>
         </div>
-        
+
         <div class="col-2 flex-column d-flex justify-content-end align-items-center">
           <div>
-          <message-button v-if="apartment" :apartment="this.apartment"></message-button>
+            <message-button v-if="apartment" :apartment="this.apartment"></message-button>
+          </div>
         </div>
+
       </div>
-        
-    </div>
-      
-    <!-- <div class="d-flex justify-content-between">
+
+      <!-- <div class="d-flex justify-content-between">
         <button @click="goBack" class="btn btn-primary">
           Torna agli Alloggi
         </button>
 
         <message-button v-if="apartment" :apartment="this.apartment"></message-button>
       </div> -->
-      
+
     </div>
   </div>
   <div></div>

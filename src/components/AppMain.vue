@@ -37,7 +37,7 @@ export default {
         <div class="slogan-main">
             Dove il brivido incontra il comfort. Prenota la tua fuga da favola... con
             un tocco di mistero!
-            <br />
+            <br /><br> <br><br>
             Trova il tuo alloggio da Paura!
         </div>
 
@@ -58,12 +58,12 @@ export default {
 
     .slogan-main {
         color: white;
-        font-size: 24px;
+        font-size: 30px;
         text-align: center;
         font-weight: bold;
 
         position: absolute;
-        top: 60px;
+        top: 80px;
         left: 50%;
         transform: translateX(-50%);
         text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000,
