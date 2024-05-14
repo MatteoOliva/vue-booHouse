@@ -143,8 +143,11 @@ export default {
   <div class="container-main">
     <div class="container">
       <div class="my-4 text-center">
+
+
+
         <input @keyup="fetchAutocomplete()" v-model="apartmentsTerms" id="address" type="search"
-          placeholder="Cerca appartamento..." required autocomplete="off" class="w-50" />
+          placeholder="Cerca appartamento..." required autocomplete="off" class="w-75" />
 
         <button class="btn btn-primary mx-3" @click="fetchFilterApartments()">
           Invia
@@ -153,6 +156,7 @@ export default {
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Ricerca Avanzata
         </button>
+
       </div>
 
       <!-- MODALE -->
@@ -235,7 +239,7 @@ export default {
       <!-- </form> -->
 
       <div class="container">
-        <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3" type="button">
+        <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 card-home-container" type="button">
           <card-apartment v-for="apartment in store.apartments" :apartment="apartment">
           </card-apartment>
         </div>
@@ -261,5 +265,14 @@ export default {
       width: 25px;
     }
   }
+}
+
+#autocomplete-results {
+  margin-left: 44px;
+
+}
+
+.card-home-container {
+  margin-top: 20px;
 }
 </style>

@@ -2,9 +2,9 @@
 // import axios from "axios";
 // importo store
 import { store, api } from "../../store";
-import { defineComponent } from 'vue'
-import { Carousel, Pagination, Slide } from 'vue3-carousel'
-import 'vue3-carousel/dist/carousel.css'
+import { defineComponent } from 'vue';
+import { Carousel, Pagination, Slide } from 'vue3-carousel';
+import 'vue3-carousel/dist/carousel.css';
 // importo card
 // import CardApartment from "./CardApartment.vue";
 
@@ -16,13 +16,13 @@ export default defineComponent({
     };
   },
 
-  components: { Carousel, Slide, Pagination},
+  components: { Carousel, Slide, Pagination },
 
   created() {
     store.fetchApartmentsSponsor();
   },
-  methods:{
- 
+  methods: {
+
   },
 
 });
@@ -45,17 +45,18 @@ export default defineComponent({
 
   </div> -->
   <div class="text-center title-ev">
-      <div>Alloggi Infestati in evidenza...</div>
+    <div>Alloggi Infestati in evidenza...</div>
   </div>
-  <Carousel :autoplay="2500" :itemsToShow="3.95" :wrapAround="true" :transition="500" >
+  <Carousel :autoplay="2500" :itemsToShow="3.95" :wrapAround="true" :transition="500">
     <Slide v-for="(apartment, index) in store.sponsoredApartments.sponsored_apartments" :key="index">
       <div class="carousel__item">
         <router-link :to="{ name: 'details', params: { slug: apartment.slug } }">
-          <img :src="apartment.image" class="d-block w-100" style="height: 180px; width: auto; object-fit: cover; border-radius: 20px;" :alt="apartment.title">
-            <h5 class="titoloslider">{{ apartment.title }}</h5>
+          <img :src="apartment.image" class="d-block w-100"
+            style="height: 180px; width: auto; object-fit: cover; border-radius: 20px;" :alt="apartment.title">
+          <h5 class="titoloslider">{{ apartment.title }}</h5>
         </router-link>
       </div>
-    </Slide> 
+    </Slide>
   </Carousel>
 </template>
 
@@ -74,13 +75,13 @@ export default defineComponent({
   transform: translateX(-50%);
 }
 
-.titoloslider{
+.titoloslider {
   text-decoration: none !important;
-  color: white ;
-  font-size: 15px ;
-  text-align: center ;
-  font-weight: bold ;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000 ;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .carousel__slide {
@@ -104,7 +105,7 @@ export default defineComponent({
   transform: rotateY(-20deg) scale(0.9);
 }
 
-.carousel__slide--active ~ .carousel__slide {
+.carousel__slide--active~.carousel__slide {
   transform: rotateY(20deg) scale(0.9);
 }
 
@@ -121,5 +122,9 @@ export default defineComponent({
 .carousel__slide--active {
   opacity: 1;
   transform: rotateY(0) scale(1.1);
+}
+
+.carousel__item :first-child {
+  text-decoration: none;
 }
 </style>
