@@ -94,11 +94,15 @@ export default {
 </script>
 
 <template>
-  <!-- <h5>PROVA BOTTONE</h5> -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+
+  <a type="button" class="mail-button text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"
     data-bs-whatever="@mdo">
-    Contatta Alloggio
-  </button>
+    <div class="container-contact d-flex justify-content-center flex-column">
+      <font-awesome-icon icon="fa-solid fa-envelope" beat style="color: #cc1136;" />
+      <div class="m-0 contact-mail"> Contatta l'alloggio</div>
+    </div>
+
+  </a>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -119,7 +123,7 @@ export default {
             </div>
             <div class="mb-3">
               <label for="content" class="col-form-label">Messaggio:</label>
-              <textarea class="form-control" id="content" rows="20" ref="content" v-model="content" required></textarea>
+              <textarea class="form-control" id="content" rows="5" ref="content" v-model="content" required></textarea>
               <span v-if="!isContentValid">Il contenuto deve essere di almeno 10 caratteri.</span>
             </div>
             <div class="modal-footer">
@@ -135,4 +139,22 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.mail-button {
+
+  font-size: 70px;
+
+  .container-contact {
+    border-radius: 20px;
+    padding: 15px;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+  }
+
+  .contact-mail {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+
+  }
+}
+</style>
