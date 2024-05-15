@@ -94,7 +94,7 @@ export default {
 </script>
 
 <template>
-
+  <!-- PULSANTE MAIL -->
   <a type="button" class="mail-button text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"
     data-bs-whatever="@mdo">
     <div class="container-contact d-flex justify-content-center flex-column">
@@ -109,9 +109,10 @@ export default {
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">
-            Scrivi a {{ this.apartment.title }}
+            Scrivi a <strong style="color: #fab005;">{{ this.apartment.title }}</strong>
           </h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            style="filter: invert(100%);"></button>
         </div>
         <div class="modal-body">
           <form id="messageform" method="post" @submit.prevent="createMessage">
@@ -119,18 +120,20 @@ export default {
               <label for="email" class="col-form-label">E-Mail:</label>
               <input type="email" class="form-control" id="email" ref="email" autocomplete="email" v-model="email"
                 required />
-              <span v-if="!isEmailValid">Inserisci mail</span>
+              <span v-if="!isEmailValid" style="color: #cc1136;">Inserisci mail</span>
             </div>
             <div class="mb-3">
               <label for="content" class="col-form-label">Messaggio:</label>
               <textarea class="form-control" id="content" rows="5" ref="content" v-model="content" required></textarea>
-              <span v-if="!isContentValid">Il contenuto deve essere di almeno 10 caratteri.</span>
+              <span v-if="!isContentValid" style="color: #cc1136;">Il contenuto deve essere di almeno 10
+                caratteri.</span>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Chiudi
               </button>
-              <button type="submit" class="btn btn-primary">Invia</button>
+              <button type="submit" class="btn btn-primary"
+                style="background-color: #fab005; color: black;">Invia</button>
             </div>
           </form>
         </div>

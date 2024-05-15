@@ -74,43 +74,34 @@ export default {
             </div>
             <hr />
             <div class="row">
-              <div class="col-6">
+              <div class="col-6 mt-4">
                 <h5>
-                  Metri Quadri: <strong>{{ apartment.mq }}</strong>
+                  <font-awesome-icon class="text-danger" icon="fa-solid fa-map" /> Metri Quadri: <strong>{{ apartment.mq
+                    }}</strong>
                 </h5>
               </div>
-              <div class="col-6">
+              <div class="col-6 mt-4">
                 <h5>
-                  Camere: <strong>{{ apartment.rooms }}</strong>
+                  <font-awesome-icon class="text-danger" icon="fa-solid fa-person-shelter" /> Camere: <strong>{{
+                    apartment.rooms }}</strong>
                 </h5>
               </div>
             </div>
 
-            <div class="row mt-4">
-              <div class="col-6">
+            <div class="row">
+              <div class="col-6 mt-4">
                 <h5>
-                  Letti: <strong>{{ apartment.beds }}</strong>
+                  <font-awesome-icon class="text-danger" icon="fa-solid fa-bed" /> Letti: <strong>{{ apartment.beds
+                    }}</strong>
                 </h5>
               </div>
-              <div class="col-6">
+              <div class="col-6 mt-4">
                 <h5>
-                  Bagni: <strong>{{ apartment.toilets }}</strong>
+                  <font-awesome-icon class="text-danger" icon="fa-solid fa-bath" /> Bagni: <strong>{{ apartment.toilets
+                    }}</strong>
                 </h5>
               </div>
 
-              <h4 class="m-0 mt-2"><strong>Servizi Disponili</strong></h4>
-              <div class="col-12 d-flex justify-content-evenly gap-4">
-                <div v-for="service in apartment.services">
-                  <div class="d-flex flex-column align-items-center gap-2 mt-1">
-                    {{ service.name }}
-                    <div>
-
-                      <img :src="service.icon" alt="" style="width: 50px" />
-
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -120,6 +111,26 @@ export default {
               <div class="butt-search">
                 <message-button v-if="apartment" :apartment="this.apartment">
                   <font-awesome-icon icon="fa-regular fa-envelope" class="logo-search" /></message-button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-2 d-flex align-items-center justify-content-end mt-2">
+            <p class="ms-3 mb-1 text"><strong c>Servizi Disponili:</strong></p>
+          </div>
+          <div class="col-10 d-flex justify-content-around mt-2">
+
+            <div v-for="service in apartment.services">
+              <div class="d-flex flex-column align-items-center gap-1 mt-1">
+                {{ service.name }}
+                <div>
+
+                  <img :src="service.icon" alt="" style="width: 50px" />
+
+                </div>
               </div>
             </div>
           </div>
@@ -198,8 +209,8 @@ export default {
 
       .butt-search {
         position: absolute;
-        top: 30px;
-        right: 30px;
+        top: 3%;
+        right: 3.8%;
       }
     }
 

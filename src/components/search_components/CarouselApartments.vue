@@ -45,7 +45,8 @@ export default defineComponent({
 
   </div> -->
   <div class="text-center title-ev">
-    <div>Alloggi Infestati in evidenza...</div>
+    <div><font-awesome-icon icon="fa-solid fa-skull-crossbones" /> Alloggi Infestati in evidenza... <font-awesome-icon
+        icon="fa-solid fa-skull-crossbones" /></div>
   </div>
   <Carousel :autoplay="2500" :itemsToShow="3.95" :wrapAround="true" :transition="500">
     <Slide v-for="(apartment, index) in store.sponsoredApartments.sponsored_apartments" :key="index">
@@ -62,12 +63,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .title-ev {
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  padding: 3px 10px;
+  border-radius: 5px;
   color: white;
   font-size: 20px;
   text-align: center;
   font-weight: bold;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  text-shadow: 1px 1px 1px #000, 1px 1px 1px #000, 1px 1px 1px #000,
+    1px 1px 1px #000;
   z-index: 1;
   position: absolute;
   top: -50px;
