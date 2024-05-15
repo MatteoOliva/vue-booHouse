@@ -143,31 +143,33 @@ export default {
 <template>
   <div class="container-main">
     <div class="container">
-      <div class="my-4 text-center">
-        <input
-          @keyup="fetchAutocomplete()"
-          v-model="apartmentsTerms"
-          id="address"
-          type="search"
-          placeholder="Cerca appartamento..."
-          required
-          autocomplete="off"
-          class="w-75"
-        />
+      <div class="my-4 mx-2 d-flex align-items-center">
+        <span class="text-start flex-grow-1"
+          ><input
+            @keyup="fetchAutocomplete()"
+            v-model="apartmentsTerms"
+            id="address"
+            type="search"
+            placeholder="Cerca alloggio..."
+            required
+            autocomplete="off"
+            class="w-100 input-bar"
+        /></span>
+        <span
+          ><button
+            id="btn-filter"
+            type="button"
+            class="btn btn-primary d-none ms-3"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Ricerca Avanzata
+          </button></span
+        >
 
         <!-- <button class="btn btn-primary mx-3" @click="fetchFilterApartments()">
           Invia
         </button> -->
-
-        <button
-          id="btn-filter"
-          type="button"
-          class="btn btn-primary d-none"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Ricerca Avanzata
-        </button>
       </div>
 
       <!-- MODALE -->
@@ -325,7 +327,7 @@ export default {
 
       <div class="container">
         <div
-          class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 card-home-container"
+          class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 g-3 card-home-container"
           type="button"
         >
           <card-apartment
@@ -364,5 +366,16 @@ export default {
 
 .card-home-container {
   margin-top: 20px;
+}
+
+.input-bar {
+  border-radius: 7px;
+  height: 37px;
+  border: 1px solid grey;
+  padding: 10px;
+
+  &:focus {
+    outline-width: 0;
+  }
 }
 </style>
