@@ -31,6 +31,7 @@ export const store = reactive({
     axios.get(`${api.urlSponsor}`).then((response) => {
       this.sponsoredApartments = response.data;
       console.log(this.apartments);
+      console.log(response.data);
     });
   },
 
