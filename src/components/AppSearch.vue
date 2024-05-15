@@ -1,5 +1,4 @@
 <script>
-
 import axios from "axios";
 
 import { store, api } from "../store";
@@ -49,8 +48,8 @@ export default {
       axios
         .get(
           "https://api.tomtom.com/search/2/geocode/" +
-          this.apartmentsTerms +
-          ".json?key=8TVYgA3vbL771Lx9e0MWAxKazyXxbjdn"
+            this.apartmentsTerms +
+            ".json?key=8TVYgA3vbL771Lx9e0MWAxKazyXxbjdn"
         )
         .then((response) => {
           console.log(response.data.results[0].position.lat);
@@ -80,6 +79,9 @@ export default {
               this.apartmentsTerms = result.address.freeformAddress;
               //   console.log(this.query.lat, this.query.lon, this.query.address);
               container.innerHTML = ""; // Nasconde i risultati dopo la selezione
+              this.fetchFilterApartments();
+              const filterButton = document.getElementById("btn-filter");
+              filterButton.classList.remove("d-none");
             };
             container.appendChild(div);
           });
@@ -102,7 +104,6 @@ export default {
       axios
         .post(`http://127.0.0.1:8000/api/apartments/search/all?${params}`)
         .then((response) => {
-
           store.apartments = response.data;
           console.log(response.data);
         });
@@ -143,32 +144,52 @@ export default {
   <div class="container-main">
     <div class="container">
       <div class="my-4 text-center">
+        <input
+          @keyup="fetchAutocomplete()"
+          v-model="apartmentsTerms"
+          id="address"
+          type="search"
+          placeholder="Cerca appartamento..."
+          required
+          autocomplete="off"
+          class="w-75"
+        />
 
-
-
-        <input @keyup="fetchAutocomplete()" v-model="apartmentsTerms" id="address" type="search"
-          placeholder="Cerca appartamento..." required autocomplete="off" class="w-75" />
-
-        <button class="btn btn-primary mx-3" @click="fetchFilterApartments()">
+        <!-- <button class="btn btn-primary mx-3" @click="fetchFilterApartments()">
           Invia
-        </button>
+        </button> -->
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button
+          id="btn-filter"
+          type="button"
+          class="btn btn-primary d-none"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
           Ricerca Avanzata
         </button>
-
       </div>
 
       <!-- MODALE -->
-      <div class="modal fade modal-xl" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+      <div
+        class="modal fade modal-xl"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog bg-dark">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
                 Ricerca Avanzata
               </h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
 
             <!-- modal body -->
@@ -177,46 +198,99 @@ export default {
                 <!-- RADIUS -->
                 <div>
                   <p class="m-0">Raggio di Ricerca</p>
-                  <input type="number" class="form-control" placeholder="Inserisci radius" v-model.number="query.radius"
-                    @input="validateRadius" min="1" max="20" aria-describedby="addon-wrapping" required />
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Inserisci radius"
+                    v-model.number="query.radius"
+                    @input="validateRadius"
+                    min="1"
+                    max="20"
+                    aria-describedby="addon-wrapping"
+                    required
+                  />
                 </div>
 
                 <!-- ROOMS -->
                 <div>
                   <p class="m-0">Numero Stanze</p>
-                  <input type="number" class="form-control" placeholder="N° Stanze" v-model.number="query.rooms"
-                    aria-describedby="addon-wrapping" min="0" required />
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="N° Stanze"
+                    v-model.number="query.rooms"
+                    aria-describedby="addon-wrapping"
+                    min="0"
+                    required
+                  />
                 </div>
 
                 <!-- BAGNI -->
                 <div>
                   <p class="m-0">Numero Bagni</p>
-                  <input type="number" class="form-control" placeholder="N° Bagni" v-model.number="query.toilets"
-                    aria-describedby="addon-wrapping" min="0" required />
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="N° Bagni"
+                    v-model.number="query.toilets"
+                    aria-describedby="addon-wrapping"
+                    min="0"
+                    required
+                  />
                 </div>
 
                 <!-- LETTI -->
                 <div>
                   <p class="m-0">Numero Letti</p>
-                  <input type="number" class="form-control" placeholder="N° Letti" v-model.number="query.beds"
-                    aria-describedby="addon-wrapping" min="0" required />
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="N° Letti"
+                    v-model.number="query.beds"
+                    aria-describedby="addon-wrapping"
+                    min="0"
+                    required
+                  />
                 </div>
 
                 <!-- MQ -->
                 <div>
                   <p class="m-0">Metri Quadri</p>
-                  <input type="number" class="form-control" placeholder="Mq" v-model.number="query.mq"
-                    aria-describedby="addon-wrapping" min="0" required />
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Mq"
+                    v-model.number="query.mq"
+                    aria-describedby="addon-wrapping"
+                    min="0"
+                    required
+                  />
                 </div>
 
                 <!-- SERVIZI -->
                 <div>
                   <div class="d-flex flex-column">
-                    <div v-for="service in services" :key="service.id" class="service-item">
-                      <input type="checkbox" :id="'service-' + service.id" v-model="query.services" :value="service.id"
-                        class="form-check-input" />
-                      <label :for="'service-' + service.id" class="ms-2 services-details">
-                        <img :src="service.icon" :alt="service.name" class="service-icon" />
+                    <div
+                      v-for="service in services"
+                      :key="service.id"
+                      class="service-item"
+                    >
+                      <input
+                        type="checkbox"
+                        :id="'service-' + service.id"
+                        v-model="query.services"
+                        :value="service.id"
+                        class="form-check-input"
+                      />
+                      <label
+                        :for="'service-' + service.id"
+                        class="ms-2 services-details"
+                      >
+                        <img
+                          :src="service.icon"
+                          :alt="service.name"
+                          class="service-icon"
+                        />
                         {{ service.name }}
                       </label>
                     </div>
@@ -225,22 +299,39 @@ export default {
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
                 Chiudi
               </button>
-              <button class="btn btn-primary mx-3" @click="fetchFilterApartments()" data-bs-dismiss="modal">
+              <button
+                class="btn btn-primary mx-3"
+                @click="fetchFilterApartments()"
+                data-bs-dismiss="modal"
+              >
                 Ricerca
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div id="autocomplete-results" class="list-group position-absolute z-1"></div>
+      <div
+        id="autocomplete-results"
+        class="list-group position-absolute z-1"
+      ></div>
       <!-- </form> -->
 
       <div class="container">
-        <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 card-home-container" type="button">
-          <card-apartment v-for="apartment in store.apartments" :apartment="apartment">
+        <div
+          class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 card-home-container"
+          type="button"
+        >
+          <card-apartment
+            v-for="apartment in store.apartments"
+            :apartment="apartment"
+          >
           </card-apartment>
         </div>
       </div>
@@ -269,7 +360,6 @@ export default {
 
 #autocomplete-results {
   margin-left: 44px;
-
 }
 
 .card-home-container {
