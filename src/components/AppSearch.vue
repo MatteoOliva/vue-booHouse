@@ -180,9 +180,9 @@ export default {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog bg-dark">
+        <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-dark text-light">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
                 Ricerca Avanzata
               </h1>
@@ -191,116 +191,122 @@ export default {
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                style="filter: invert(100%)"
               ></button>
             </div>
 
             <!-- modal body -->
-            <div class="modal-body">
-              <div class="input-group d-flex gap-3 align-items-center">
-                <!-- RADIUS -->
-                <div>
-                  <p class="m-0">Raggio di Ricerca</p>
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="Inserisci radius"
-                    v-model.number="query.radius"
-                    @input="validateRadius"
-                    min="1"
-                    max="20"
-                    aria-describedby="addon-wrapping"
-                    required
-                  />
-                </div>
+            <div class="modal-body bg-dark text-light">
+              <div class="container">
+                <div class="row justify-content-center mt-3">
+                  <!-- RADIUS -->
+                  <div class="col-2">
+                    <p class="m-0">Raggio di Ricerca</p>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Inserisci radius"
+                      v-model.number="query.radius"
+                      @input="validateRadius"
+                      min="1"
+                      max="20"
+                      aria-describedby="addon-wrapping"
+                      required
+                    />
+                  </div>
 
-                <!-- ROOMS -->
-                <div>
-                  <p class="m-0">Numero Stanze</p>
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="N° Stanze"
-                    v-model.number="query.rooms"
-                    aria-describedby="addon-wrapping"
-                    min="0"
-                    required
-                  />
-                </div>
+                  <!-- ROOMS -->
+                  <div class="col-2">
+                    <p class="m-0">Numero Stanze</p>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="N° Stanze"
+                      v-model.number="query.rooms"
+                      aria-describedby="addon-wrapping"
+                      min="0"
+                      required
+                    />
+                  </div>
 
-                <!-- BAGNI -->
-                <div>
-                  <p class="m-0">Numero Bagni</p>
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="N° Bagni"
-                    v-model.number="query.toilets"
-                    aria-describedby="addon-wrapping"
-                    min="0"
-                    required
-                  />
-                </div>
+                  <!-- BAGNI -->
+                  <div class="col-2">
+                    <p class="m-0">Numero Bagni</p>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="N° Bagni"
+                      v-model.number="query.toilets"
+                      aria-describedby="addon-wrapping"
+                      min="0"
+                      required
+                    />
+                  </div>
 
-                <!-- LETTI -->
-                <div>
-                  <p class="m-0">Numero Letti</p>
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="N° Letti"
-                    v-model.number="query.beds"
-                    aria-describedby="addon-wrapping"
-                    min="0"
-                    required
-                  />
-                </div>
+                  <!-- LETTI -->
+                  <div class="col-2">
+                    <p class="m-0">Numero Letti</p>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="N° Letti"
+                      v-model.number="query.beds"
+                      aria-describedby="addon-wrapping"
+                      min="0"
+                      required
+                    />
+                  </div>
 
-                <!-- MQ -->
-                <div>
-                  <p class="m-0">Metri Quadri</p>
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="Mq"
-                    v-model.number="query.mq"
-                    aria-describedby="addon-wrapping"
-                    min="0"
-                    required
-                  />
-                </div>
+                  <!-- MQ -->
+                  <div class="col-2">
+                    <p class="m-0">Metri Quadri</p>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Mq"
+                      v-model.number="query.mq"
+                      aria-describedby="addon-wrapping"
+                      min="0"
+                      required
+                    />
+                  </div>
+                  <div class="col-10 mt-4 mb-2">
+                    <p class="m-0">Servizi</p>
+                  </div>
 
-                <!-- SERVIZI -->
-                <div>
-                  <div class="d-flex flex-column">
-                    <div
-                      v-for="service in services"
-                      :key="service.id"
-                      class="service-item"
-                    >
-                      <input
-                        type="checkbox"
-                        :id="'service-' + service.id"
-                        v-model="query.services"
-                        :value="service.id"
-                        class="form-check-input"
-                      />
-                      <label
-                        :for="'service-' + service.id"
-                        class="ms-2 services-details"
+                  <!-- SERVIZI -->
+                  <div class="col-10 mb-3">
+                    <div class="row align-items-center">
+                      <div
+                        v-for="service in services"
+                        :key="service.id"
+                        class="service-item col-3"
                       >
-                        <img
-                          :src="service.icon"
-                          :alt="service.name"
-                          class="service-icon"
+                        <input
+                          type="checkbox"
+                          :id="'service-' + service.id"
+                          v-model="query.services"
+                          :value="service.id"
+                          class="form-check-input"
                         />
-                        {{ service.name }}
-                      </label>
+                        <label
+                          :for="'service-' + service.id"
+                          class="ms-2 services-details"
+                        >
+                          <img
+                            :src="service.icon"
+                            :alt="service.name"
+                            class="service-icon"
+                          />
+                          {{ service.name }}
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer bg-dark">
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -378,4 +384,20 @@ export default {
     outline-width: 0;
   }
 }
+
+// @keyframes pulse {
+//   0% {
+//     transform: scale(1);
+//   }
+//   50% {
+//     transform: scale(1.1);
+//   }
+//   100% {
+//     transform: scale(1);
+//   }
+// }
+
+// .pulse {
+//   animation: pulse 4s infinite;
+// }
 </style>
