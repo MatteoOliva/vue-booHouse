@@ -148,7 +148,6 @@ export default {
     border-radius: 20px;
     padding: 15px;
     background-color: rgba($color: #000000, $alpha: 0.5);
-
   }
 
   .contact-mail {
