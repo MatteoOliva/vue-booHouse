@@ -1,77 +1,73 @@
 <script>
-// import axios from "axios";
-// importo store
-import { store, api } from "../../store";
+import { store } from "../../store";
 import { defineComponent } from 'vue';
-import { Carousel, Pagination, Slide } from 'vue3-carousel';
+import { Carousel, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
-// importo card
-// import CardApartment from "./CardApartment.vue";
 
 export default defineComponent({
   data() {
     return {
       store,
-      api,
+      breakpoints: {
+        576: { perPage: 2, spacePadding: 10 },
+        768: { perPage: 3, spacePadding: 10 },
+        992: { perPage: 4, spacePadding: 10 },
+        1200: { perPage: 5, spacePadding: 10 }
+      }
     };
   },
-
-  components: { Carousel, Slide, Pagination },
-
+  components: { Carousel, Slide },
   created() {
     store.fetchApartmentsSponsor();
-  },
-  methods: {
-
-  },
-
+  }
 });
 </script>
 
+
+
+
 <template>
-  <!-- <div class="container-carousel">
-
-    < <div id="carouselExampleInterval" class="carousel slide carosello" data-bs-ride="carousel">
-      <div class="carousel-inner" style="height: 400px; border-radius: 50px;">
-        <div class="carousel-item" :class="index == 0 ? 'active' : ''" data-bs-interval="2000"
-          v-for="(apartment, index) in store.sponsoredApartments.sponsored_apartments">
-          <img :src="apartment.image" class="d-block w-100"
-            style="height: 500px; width: auto; object-fit: cover; border-radius: 50px;" :alt="apartment.title">
+  <div class="carousel-wrapper">
+    <div class="text-center title-ev">
+      <div>
+        <font-awesome-icon icon="fa-solid fa-skull-crossbones" />
+        Alloggi Infestati in evidenza...
+        <font-awesome-icon icon="fa-solid fa-skull-crossbones" />
+      </div>
+    </div>
+    <Carousel :autoplay="2500" :wrapAround="true" :transition="500" :breakpoints="breakpoints">
+      <Slide v-for="(apartment, index) in store.sponsoredApartments.sponsored_apartments" :key="index">
+        <div class="carousel__item">
+          <router-link :to="{ name: 'details', params: { slug: apartment.slug } }">
+            <img :src="apartment.image" class="carousel-img" :alt="apartment.title">
+            <h5 class="titoloslider">{{ apartment.title }}</h5>
+          </router-link>
         </div>
-
-      </div>
-
+      </Slide>
+    </Carousel>
   </div>
-
-  </div> -->
-  <div class="text-center title-ev">
-    <div><font-awesome-icon icon="fa-solid fa-skull-crossbones" /> Alloggi Infestati in evidenza... <font-awesome-icon
-        icon="fa-solid fa-skull-crossbones" /></div>
-  </div>
-  <Carousel :autoplay="2500" :itemsToShow="3.95" :wrapAround="true" :transition="500">
-    <Slide v-for="(apartment, index) in store.sponsoredApartments.sponsored_apartments" :key="index">
-      <div class="carousel__item">
-        <router-link :to="{ name: 'details', params: { slug: apartment.slug } }">
-          <img :src="apartment.image" class="d-block w-100"
-            style="height: 180px; width: auto; object-fit: cover; border-radius: 20px;" :alt="apartment.title">
-          <h5 class="titoloslider">{{ apartment.title }}</h5>
-        </router-link>
-      </div>
-    </Slide>
-  </Carousel>
 </template>
 
+
+
+
+
 <style lang="scss" scoped>
+.carousel-wrapper {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .title-ev {
-  background-color: rgba($color: #000000, $alpha: 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 3px 10px;
   border-radius: 5px;
   color: white;
   font-size: 20px;
   text-align: center;
   font-weight: bold;
-  text-shadow: 1px 1px 1px #000, 1px 1px 1px #000, 1px 1px 1px #000,
-    1px 1px 1px #000;
+  text-shadow: 1px 1px 1px #000;
   z-index: 1;
   position: absolute;
   top: -50px;
@@ -85,50 +81,47 @@ export default defineComponent({
   font-size: 15px;
   text-align: center;
   font-weight: bold;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000;
 }
 
-.carousel__slide {
-  padding: 5px;
+.carousel__item {
+  box-sizing: border-box;
+  padding: 10px;
 }
 
-.carousel__viewport {
-  perspective: 2000px;
+.carousel-img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
-.carousel__track {
-  transform-style: preserve-3d;
+@media (min-width: 1200px) {
+  .carousel-img {
+    height: 300px;
+  }
 }
 
-.carousel__slide--sliding {
-  transition: 0.5s;
+@media (max-width: 1199px) {
+  .carousel-img {
+    height: 250px;
+  }
 }
 
-.carousel__slide {
-  opacity: 0.9;
-  transform: rotateY(-20deg) scale(0.9);
+@media (max-width: 992px) {
+  .carousel-img {
+    height: 200px;
+  }
 }
 
-.carousel__slide--active~.carousel__slide {
-  transform: rotateY(20deg) scale(0.9);
+@media (max-width: 768px) {
+  .carousel-img {
+    height: 150px;
+  }
 }
 
-.carousel__slide--prev {
-  opacity: 1;
-  transform: rotateY(-10deg) scale(0.95);
-}
-
-.carousel__slide--next {
-  opacity: 1;
-  transform: rotateY(10deg) scale(0.95);
-}
-
-.carousel__slide--active {
-  opacity: 1;
-  transform: rotateY(0) scale(1.1);
-}
-
-.carousel__item :first-child {
-  text-decoration: none;
+@media (max-width: 576px) {
+  .carousel-img {
+    height: 100px;
+  }
 }
 </style>

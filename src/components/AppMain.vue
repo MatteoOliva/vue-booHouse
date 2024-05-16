@@ -20,88 +20,95 @@ export default {
 </script>
 
 <template>
-    <div class="container-main ">
+    <div class="container-main">
         <!-- CAROSELLO -->
-        <div class="row justify-content-center">
-            <div class="col-6  carosello">
-                <carousel-apartments class=""></carousel-apartments>
-            </div>
+        <div class="carousel-container">
+            <carousel-apartments></carousel-apartments>
         </div>
-        <!-- <router-link :to="{ name: 'search' }" @click="store.fetchApartments()"> -->
-        <!-- <div class="blood-button"> -->
-        <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="logo-search" /> -->
-        <!-- </div> -->
-        <!-- </router-link> -->
-
-
-        <div class="slogan-main">
-            Dove il brivido incontra il comfort. Prenota la tua fuga da favola... con
-            un tocco di mistero!
-        </div>
-
-
 
         <div class="slogan-search" @click="scrollToSearch()">
-            <font-awesome-icon icon="fa-solid fa-down-long" bounce /> <font-awesome-icon icon="fa-solid fa-down-long"
-                bounce />
-            Trova
-            il tuo alloggio da Paura! <font-awesome-icon icon="fa-solid fa-down-long" bounce /> <font-awesome-icon
-                icon="fa-solid fa-down-long" bounce />
+            <p class="m-0">
+                <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+                <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+                Trova il tuo alloggio da Paura!
+                <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+                <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+            </p>
         </div>
     </div>
 </template>
 
+
 <style lang="scss" scoped>
 .container-main {
+    width: 100%;
     height: calc(100vh - 170px);
-    background-image: url(/src/img/background-home.jpg);
-    background-position: center;
+    background-image: url(/src/img/background-home-new.jpg);
+    background-position: top;
     background-size: cover;
     position: relative;
     overflow: auto;
     scrollbar-width: none;
+}
 
+.carousel-container {
+    width: 100%;
+    position: absolute;
+    bottom: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-    .slogan-main {
-        width: 90%;
-        background-color: rgba($color: #000000, $alpha: 0.48);
+.slogan-search {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fab005;
+    text-align: center;
+    margin: 0, auto;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1420px) {
+    .slogan-search p {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 1138px) {
+    .slogan-search p {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container-main {
+        background-image: url(/src/img/background-home-992.jpg);
+    }
+
+    .slogan-search p {
+        font-size: 1.3rem;
+        background-color: rgba($color: #000000, $alpha: 0.7);
         padding: 10px;
-        padding-left: 70px;
-        padding-right: 70px;
-        border-radius: 25px;
-        color: white;
-        font-size: 40px;
-        text-align: center;
-        font-weight: bold;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        border-radius: 15px;
+    }
+}
 
-
-
-        position: absolute;
-        top: 70px;
-        left: 50%;
-        transform: translateX(-50%);
-
+@media screen and (max-width: 768px) {
+    .container-main {
+        background-image: url(/src/img/background-home-768.jpg);
     }
 
-    .carosello {
-        position: absolute;
-        bottom: 28%;
-        left: 50%;
-        transform: translateX(-50%);
+    .slogan-search p {
+        font-size: 0.8rem;
     }
+}
 
-    .slogan-search {
-        position: absolute;
-        bottom: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #fab005;
-        text-align: center;
-        margin: 0, auto;
-        font-size: 2.5rem;
-        font-weight: bold;
+@media screen and (max-width: 576px) {
+    .slogan-search p {
+        font-size: 0.6rem;
     }
-
 }
 </style>
