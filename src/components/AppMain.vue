@@ -16,6 +16,12 @@ export default {
     components: { CarouselApartments },
 
     methods: {},
+
+    created() {
+        console.log(store.sponsoredApartments);
+        store.fetchApartmentsSponsor();
+
+    }
 };
 </script>
 
@@ -23,7 +29,7 @@ export default {
     <div class="container-main">
         <!-- CAROSELLO -->
         <div class="carousel-container">
-            <carousel-apartments></carousel-apartments>
+            <carousel-apartments :apartments="store.sponsoredApartments.sponsored_apartments"></carousel-apartments>
         </div>
 
         <div class="slogan-search" @click="scrollToSearch()">

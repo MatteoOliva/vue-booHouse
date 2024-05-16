@@ -3,21 +3,33 @@ import { store } from "../../store";
 import { defineComponent } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
+import { register } from "swiper/element/bundle";
+
+// Import Swiper styles
+
+// import required modules
+
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
+register();
 
 export default defineComponent({
+  props: { apartments: Array },
   components: { Swiper, SwiperSlide },
   data() {
     return {
       store,
       slidesPerView: 5,
     };
+
   },
   created() {
-    store.fetchApartmentsSponsor();
+    // store.fetchApartmentsSponsor();
   },
   mounted() {
     this.updateSlidesPerView();
     window.addEventListener('resize', this.updateSlidesPerView);
+
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.updateSlidesPerView);
@@ -48,7 +60,8 @@ export default defineComponent({
 
 
 <template>
-  <div class="carousel-wrapper">
+
+  <div class="carousel-wrapper" v-if="apartments">
     <div class="text-center title-ev">
       <div class="evidenza-alloggi">
         <font-awesome-icon icon="fa-solid fa-skull-crossbones" />
@@ -57,16 +70,16 @@ export default defineComponent({
       </div>
     </div>
     <swiper :slides-per-view="slidesPerView" :space-between="20" :loop="true"
-      :autoplay="{ delay: 2000, disableOnInteraction: false }" pagination>
-      <swiper-slide v-for="(apartment, index) in store.sponsoredApartments.sponsored_apartments" :key="index">
+      :autoplay="{ delay: 0, disableOnInteraction: false }" :speed=3000>
+      <swiper-slide v-for="(apartment, index) in apartments" :key="index">
         <div class="carousel__item">
-          <router-link :to="{ name: 'details', params: { slug: apartment.slug } }">
+          <router-link :to="{ name: 'details', params: { slug: apartment.slug } }" style="text-decoration: none;">
             <img :src="apartment.image" class="carousel-img" :alt="apartment.title">
             <h5 class="titoloslider">{{ apartment.title }}</h5>
           </router-link>
         </div>
       </swiper-slide>
-      <div class="swiper-pagination"></div>
+
     </swiper>
   </div>
 </template>
@@ -79,6 +92,11 @@ export default defineComponent({
 
 
 <style lang="scss" scoped>
+@import "/node_modules/swiper/swiper-bundle.css";
+
+@import "/node_modules/swiper/modules/pagination.css";
+@import "/node_modules/swiper/modules/navigation.css";
+
 .carousel-wrapper {
   width: 100%;
   padding: 0;
