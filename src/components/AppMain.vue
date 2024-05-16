@@ -54,7 +54,7 @@ export default {
 .carousel-container {
     width: 100%;
     position: absolute;
-    bottom: 28%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -74,6 +74,16 @@ export default {
 @media screen and (max-width: 1420px) {
     .slogan-search p {
         font-size: 2rem;
+    }
+
+    .carousel-container {
+        bottom: 15%;
+    }
+}
+
+@media screen and (max-width: 1180px) {
+    .carousel-container {
+        bottom: 18%;
     }
 }
 
@@ -103,6 +113,10 @@ export default {
 
     .slogan-search p {
         font-size: 0.8rem;
+    }
+
+    .carousel-container {
+        bottom: 25%;
     }
 }
 
