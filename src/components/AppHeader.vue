@@ -15,20 +15,20 @@ export default {
   <div class="container-header">
     <div class="header d-flex align-items-center">
       <div class="container d-flex justify-content-between align-items-center">
-        <router-link
-          :to="{ name: 'home' }"
-          class="logo-left d-flex align-items-center gap-4"
-        >
-          <img src="/src/img/head-logo.png" alt="" />
+        <router-link :to="{ name: 'home' }" class="logo-left d-flex align-items-center gap-4">
+          <img src="/src/img/head-logo.png" alt="" class="logo-big" />
+          <img src="/src/img/head-logo-mini.png" alt="" class="logo-small" />
         </router-link>
 
         <div class="header-right">
           <ul class="d-flex gap-4 mb-0">
             <li>
-              <a href="http://127.0.0.1:8000/login"
-                >Area riservata
-                <font-awesome-icon class="ms-2" icon="fa-solid fa-user"
-              /></a>
+              <a href="http://127.0.0.1:8000/login" class="fs-4"><span class="reserved-area ">Area
+                  riservata</span>
+                <span class="box-area">
+                  <font-awesome-icon class="ms-2" icon="fa-solid fa-user" />
+                </span>
+              </a>
             </li>
             <!-- <li><a href="http://127.0.0.1:8000/register">Registrati</a></li> -->
           </ul>
@@ -66,6 +66,43 @@ export default {
         color: white;
       }
     }
+  }
+}
+
+
+@media screen and (max-width: 3000px) {
+  .logo-small {
+    display: none;
+  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .logo-big {
+    display: none;
+  }
+
+  .logo-small {
+    display: block;
+  }
+}
+
+
+
+
+@media screen and (max-width: 576px) {
+  .logo-small {
+    margin-left: 30%;
+  }
+
+  .reserved-area {
+    display: none;
+  }
+
+  .box-area {
+    font-size: 40px;
+    margin-right: 30px;
   }
 }
 </style>
