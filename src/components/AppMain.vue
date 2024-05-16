@@ -41,7 +41,7 @@ export default {
 
 
 
-        <div class="slogan-search">
+        <div class="slogan-search" @click="scrollToSearch()">
             <font-awesome-icon icon="fa-solid fa-down-long" bounce /> <font-awesome-icon icon="fa-solid fa-down-long"
                 bounce />
             Trova
