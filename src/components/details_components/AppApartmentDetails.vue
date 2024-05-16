@@ -62,17 +62,26 @@ export default {
       <div class="card main-card text-white card-grunge-bg">
 
         <div class="row">
-          <div class="col-6 text-center mt-4">
+          <div class="col-12 col-lg-6 text-center mt-4">
+
             <h2>
               Alloggio: <strong>{{ apartment.title }}</strong>
-
-
             </h2>
-
             <div class="row">
               <h5 class="col-12 mt-2">{{ apartment.address }}</h5>
             </div>
-            <hr />
+            <hr/>
+
+          <div class="col-12 d-lg-none container-first-image">
+            <div class="container-main-img">
+              <img v-if="apartment.image" :src="apartment.image" class="" />
+              <div class="butt-search">
+                <message-button v-if="apartment" :apartment="this.apartment">
+                  <font-awesome-icon icon="fa-regular fa-envelope" class="logo-search" /></message-button>
+              </div>
+            </div>
+          </div>
+
             <div class="row">
               <div class="col-6 mt-4">
                 <h5>
@@ -105,7 +114,7 @@ export default {
             </div>
           </div>
 
-          <div class="col-6 container-first-image">
+          <div class="col-6 container-first-image d-none d-lg-block">
             <div class="container-main-img">
               <img v-if="apartment.image" :src="apartment.image" class="" />
               <div class="butt-search">
@@ -173,47 +182,48 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
 
+.main-card {
+  padding: 1%;
+  width: 100%;
+  height: 90%;
+  box-shadow: 15px 15px 15px rgba($color: #000000, $alpha: 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
+  overflow: auto;
+  scrollbar-width: none;
 
-  .main-card {
-    padding: 1%;
-    width: 100%;
-    height: 90%;
-    box-shadow: 15px 15px 15px rgba($color: #000000, $alpha: 0.7);
-    background-color: rgba(0, 0, 0, 0.7);
-    overflow: auto;
-    scrollbar-width: none;
+  .container-main-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    height: 300px;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px rgba($color: black, $alpha: 0.7);
 
-    .container-main-img {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 15px;
-      height: 300px;
-      overflow: hidden;
-      box-shadow: 5px 5px 5px rgba($color: black, $alpha: 0.7);
-
-
-      .img {
-        width: 100%;
-        max-height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
-
-
+    .img {
+      width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
+  }
 
-    .container-first-image {
-      position: relative;
+  .container-first-image {
+    position: relative;
 
-      .butt-search {
-        position: absolute;
-        top: 3%;
-        right: 3.8%;
-      }
+    .butt-search {
+      position: absolute;
+      top: 3%;
+      right: 3.8%;
     }
-
   }
 }
+/* media query 576 */
+
+@media (min-width: 576px) {
+      
+    }
+
 </style>
