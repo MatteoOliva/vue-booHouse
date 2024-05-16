@@ -152,6 +152,7 @@ export default {
       filterButton.classList.add("d-none");
       emptySearchBtn.classList.add("d-none");
     },
+
   },
 
   mounted() {
