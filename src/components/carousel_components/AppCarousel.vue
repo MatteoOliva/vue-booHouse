@@ -1,5 +1,6 @@
 <script>
 import { store } from "../../store";
+import CardApartment from "../search_components/CardApartment.vue";
 
 export default {
   data() {
@@ -8,8 +9,16 @@ export default {
     };
   },
 
+  components: { CardApartment },
+
   created() {
     store.fetchApartmentsSponsor();
+  },
+
+  computed: {
+    // apartment() {
+    //   return store.sponsoredApartments[0];
+    // },
   },
 };
 </script>
@@ -22,6 +31,17 @@ export default {
         <font-awesome-icon icon="fa-solid fa-skull-crossbones" />
         Alloggi Infestati in evidenza...
         <font-awesome-icon icon="fa-solid fa-skull-crossbones" />
+      </div>
+    </div>
+
+    <div class="carousel-container container">
+      <div class="row flex-nowrap">
+        <card-apartment
+          v-for="apartment in store.sponsoredApartments"
+          :apartment="apartment"
+          :key="apartment.id"
+          class="col-3"
+        ></card-apartment>
       </div>
     </div>
   </div>

@@ -29,9 +29,11 @@ export const store = reactive({
   //   chiamata per appartamenti sponsorizzati
   fetchApartmentsSponsor() {
     axios.get(`${api.urlSponsor}`).then((response) => {
-      this.sponsoredApartments = response.data;
-      console.log(this.apartments);
-      console.log(response.data);
+      this.sponsoredApartments = response.data.sponsored_apartments;
+      // console.log("sponsorizzati", store.sponsoredApartments);
+      // console.log(store.sponsoredApartments[0]);
+      // console.log(this.apartments);
+      // console.log(response.data);
     });
   },
 
