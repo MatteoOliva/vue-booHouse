@@ -127,8 +127,8 @@ export default {
 
         <div class="row">
 
-          <div class="col-2 d-flex align-items-center justify-content-end mt-2">
-            <p class="ms-3 mb-1 text"><strong c>Servizi Disponili:</strong></p>
+          <div class="col-12 justify-content-center col-lg-2 d-flex align-items-center justify-content-lg-end mt-2">
+            <p class="ms-3 mb-1 text"><strong>Servizi Disponili:</strong></p>
           </div>
           <div class="col-10 d-flex justify-content-around mt-2">
 
