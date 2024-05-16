@@ -131,7 +131,7 @@ export default {
       const searchBar = document.getElementById('address');
 
       searchBar.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-    }
+    },
 
     emptySearch() {
       this.apartmentsTerms = "";
@@ -165,7 +165,7 @@ export default {
 <template>
   <div class="container-main">
     <div class="container">
-      <div class="my-4 mx-2 d-flex align-items-center">
+      <div class="my-4 mx-2 d-flex align-items-center box-search">
         <span class="text-start flex-grow-1">
           <input @keyup="fetchAutocomplete()" @click="scrollToSearch()" v-model="apartmentsTerms" id="address"
             type="search" placeholder="Cerca alloggio..." required autocomplete="off" class="w-100 input-bar" /></span>
