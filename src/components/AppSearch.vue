@@ -301,7 +301,7 @@ export default {
 }
 
 #autocomplete-results {
-  margin-left: 44px;
+  margin-left: 10px;
 }
 
 .card-home-container {
