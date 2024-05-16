@@ -25,7 +25,7 @@ export default {
     <!-- CAROSELLO -->
     <div class="carousel-container">
       <carousel-apartments></carousel-apartments>
-      <app-carousel />
+      <!-- <app-carousel /> -->
     </div>
 
     <div class="slogan-search" @click="scrollToSearch()">
