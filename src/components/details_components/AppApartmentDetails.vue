@@ -125,24 +125,30 @@ export default {
           </div>
         </div>
 
-        <div class="row">
+        <div class="row justify-content-center mt-lg-4">
 
           <div class="col-12 justify-content-center col-lg-2 d-flex align-items-center justify-content-lg-end mt-2">
             <p class="ms-3 mb-1 text"><strong>Servizi Disponili:</strong></p>
           </div>
-          <div class="col-10 d-flex justify-content-around mt-2">
 
-            <div v-for="service in apartment.services">
-              <div class="d-flex flex-column align-items-center gap-1 mt-1">
-                {{ service.name }}
-                <div>
+          <div class="row gap-3 justify-content-center justify-content-lg-start col-lg-10">
 
-                  <img :src="service.icon" alt="" style="width: 50px" />
+            <div class="col-2 col-lg-1 p-0" v-for="service in apartment.services">
 
+              <div class="card h-100 border-0 bg-transparent d-flex direction-column justify-content-between align-items-center">
+                <div class="service-name text-white text-center">
+                  {{ service.name }}
                 </div>
+                
+                <div class="service-icon">
+                  <img :src="service.icon" alt="" style="width: 50px" />
+                </div>
+
               </div>
             </div>
+            
           </div>
+
         </div>
 
         <div class="row flex-column ">
@@ -219,6 +225,7 @@ export default {
       right: 3.8%;
     }
   }
+  
 }
 /* media query 576 */
 
