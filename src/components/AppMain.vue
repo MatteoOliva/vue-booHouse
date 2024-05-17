@@ -16,16 +16,36 @@ export default {
 
   components: { CarouselApartments, AppCarousel },
 
-  methods: {},
+
+    methods: {},
+
+    created() {
+        console.log(store.sponsoredApartments);
+        store.fetchApartmentsSponsor();
+
+    }
+
 };
 </script>
 
 <template>
-  <div class="container-main">
-    <!-- CAROSELLO -->
-    <div class="carousel-container">
-      <carousel-apartments></carousel-apartments>
-      <!-- <app-carousel /> -->
+
+    <div class="container-main">
+        <!-- CAROSELLO -->
+        <div class="carousel-container">
+            <carousel-apartments :apartments="store.sponsoredApartments.sponsored_apartments"></carousel-apartments>
+        </div>
+
+        <div class="slogan-search" @click="scrollToSearch()">
+            <p class="m-0">
+                <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+                <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+                Trova il tuo alloggio da Paura!
+                <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+                <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+            </p>
+        </div>
+
     </div>
 
     <div class="slogan-search" @click="scrollToSearch()">
@@ -42,34 +62,45 @@ export default {
 
 <style lang="scss" scoped>
 .container-main {
-  width: 100%;
-  height: calc(100vh - 170px);
-  background-image: url(/src/img/background-home-new.jpg);
-  background-position: top;
-  background-size: cover;
-  position: relative;
-  overflow: auto;
-  scrollbar-width: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+
+    width: 100%;
+    height: calc(100vh - 170px);
+    background-image: url(/src/img/background-home-new.jpg);
+    background-position: top;
+    background-size: cover;
+    // position: relative;
+    overflow: auto;
+    scrollbar-width: none;
 }
 
 .carousel-container {
-  width: 100%;
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+    width: 100%;
+    // position: absolute;
+    // bottom: 10%;
+    // left: 50%;
+    // transform: translateX(-50%);
 }
 
 .slogan-search {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fab005;
-  text-align: center;
-  margin: 0, auto;
-  font-size: 2.5rem;
-  font-weight: bold;
+    // position: absolute;
+    // bottom: 15px;
+    // left: 50%;
+    // transform: translateX(-50%);
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    padding: 15px;
+    border-radius: 25px;
+    color: #fab005;
+    text-align: center;
+    margin: 0, auto;
+    font-size: 2.5rem;
+    font-weight: bold;
+
 }
 
 @media screen and (max-width: 1420px) {
@@ -95,16 +126,17 @@ export default {
 }
 
 @media screen and (max-width: 992px) {
-  .container-main {
-    background-image: url(/src/img/background-home-992.jpg);
-  }
 
-  .slogan-search p {
-    font-size: 1.3rem;
-    background-color: rgba($color: #000000, $alpha: 0.7);
-    padding: 10px;
-    border-radius: 15px;
-  }
+    .container-main {
+        background-image: url(/src/img/background-home-992.jpg);
+    }
+
+    .slogan-search p {
+        font-size: 1.7rem;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -112,18 +144,18 @@ export default {
     background-image: url(/src/img/background-home-768.jpg);
   }
 
-  .slogan-search p {
-    font-size: 0.8rem;
-  }
 
-  .carousel-container {
-    bottom: 25%;
-  }
+    .slogan-search p {
+        font-size: 1.7rem;
+    }
+
+
 }
 
 @media screen and (max-width: 576px) {
-  .slogan-search p {
-    font-size: 0.6rem;
-  }
+    .slogan-search p {
+        font-size: 1.4rem;
+    }
+
 }
 </style>

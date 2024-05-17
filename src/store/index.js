@@ -30,7 +30,7 @@ export const store = reactive({
   fetchApartmentsSponsor() {
     axios.get(`${api.urlSponsor}`).then((response) => {
       this.sponsoredApartments = response.data;
-      console.log(this.apartments);
+      console.log(this.sponsoredApartments);
       console.log(response.data);
     });
   },
