@@ -1,33 +1,25 @@
-<script>
-import axios from "axios";
+    <script>
+    import LoadingModal from './components/LoadingModal.vue';
+    import AppHeader from './components/AppHeader.vue';
+    import AppFooter from './components/AppFooter.vue';
+   
+    
+    export default {
+      components: { LoadingModal, AppHeader, AppFooter },
 
-import AppHeader from "./components/AppHeader.vue";
-import AppMain from "./components/AppMain.vue";
-import AppFooter from "./components/AppFooter.vue";
-// import AppSearch from "./components/AppSearch.vue";
-
-export default {
-  data() {
-    return {
-      title: "Boo House"
     };
-  },
+    </script>
 
-  components: { AppHeader, AppMain, AppFooter },
-
-}
-
-</script>
-
+<!-- App.vue -->
 <template>
-
-  <AppHeader></AppHeader>
-
-
-  <router-view></router-view>
-  <AppFooter></AppFooter>
-
+  <div id="app">
+    <loading-modal />
+    <AppHeader />
+    <router-view/>
+    <AppFooter />
+  </div>
 </template>
+
 
 <style lang="scss">
 @use "./styles/general.scss";
@@ -37,6 +29,4 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-;
 </style>

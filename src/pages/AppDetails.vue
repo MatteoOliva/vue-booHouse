@@ -19,13 +19,16 @@ export default {
 
   methods: {
     fetchApartmentDetails() {
-
+      store.isVisible = true;
+      
       const apartmentSlug = this.$route.params.slug;
       axios
         .get(`http://127.0.0.1:8000/api/apartments/${apartmentSlug}`)
         .then((response) => {
           console.log(response.data);
           this.apartment = response.data;
+          store.isVisible = false;
+          
         });
     },
 
@@ -39,6 +42,7 @@ export default {
 
   created() {
     this.fetchApartmentDetails();
+    
 
     this.fetchServices();
 
