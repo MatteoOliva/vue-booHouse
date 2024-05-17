@@ -55,7 +55,7 @@ export default {
 .carousel-container {
   width: 100%;
   position: absolute;
-  bottom: 10%;
+  bottom: 50%;
   left: 50%;
   transform: translateX(-50%);
 }
