@@ -170,21 +170,44 @@ export default {
   <div class="container-main">
     <div class="container">
       <div class="my-4 mx-2 d-flex align-items-center box-search mb-3 mb-md-0">
+
+
         <span class="text-start flex-grow-1">
           <input @keyup="fetchAutocomplete()" @click="scrollToSearch()" v-model="apartmentsTerms" id="address"
             type="search" placeholder="Cerca alloggio..." required autocomplete="off" class="w-100 input-bar" /></span>
-        <span><button id="btn-filter" style="color: black; background-color: #fab005" type="button"
-            class="btn d-none ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Ricerca Avanzata
-          </button></span>
-        <span><button @click="emptySearch()" id="btn-empty-search" style="color: black; background-color: #fab005"
-            type="button" class="btn d-none ms-3">
-            Azzera ricerca
-          </button></span>
+
+
+        <div class="d-none d-md-flex justify-content-between">
+
+          <span class="advanced-search"><button id="btn-filter" style="color: black; background-color: #fab005"
+              type="button" class="btn d-none ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Ricerca Avanzata
+            </button></span>
+
+
+          <span><button @click="emptySearch()" id="btn-empty-search" style="color: white; background-color: #cc1136"
+              type="button" class="btn d-none ms-3">
+              Azzera ricerca
+            </button></span>
+        </div>
+
 
         <!-- <button class="btn btn-primary mx-3" @click="fetchFilterApartments()">
           Invia
         </button> -->
+      </div>
+
+      <div class="d-flex d-md-none justify-content-between mt-2 box-search-mobile">
+
+        <span class="advanced-search"><button id="btn-filter" style="color: black; background-color: #fab005"
+            type="button" class="btn ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Ricerca Avanzata
+          </button></span>
+
+        <span><button @click="emptySearch()" id="btn-empty-search" style="color: white; background-color: #cc1136"
+            type="button" class="btn me-2 ">
+            Azzera ricerca
+          </button></span>
       </div>
 
       <div id="autocomplete-results" class="list-group position-absolute z-1"></div>
@@ -299,6 +322,12 @@ export default {
   position: relative;
   overflow: auto;
   scrollbar-width: none;
+
+  .box-search-mobile {
+    position: sticky;
+    top: 70px;
+    z-index: 1;
+  }
 
   .services-details {
     img {
