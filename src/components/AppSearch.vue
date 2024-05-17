@@ -13,6 +13,7 @@ export default {
       apartmentsTerms: "",
       clickResult: "",
       services: [],
+      activeFilters: false,
       query: {
         lat: "",
         lon: "",
@@ -112,6 +113,10 @@ export default {
         });
     },
 
+    showFilters() {
+      this.activeFilters = true;
+    },
+
     validateRadius() {
       if (this.query.radius < 1) {
         this.query.radius = 1;
@@ -155,13 +160,16 @@ export default {
       const emptySearchBtn = document.getElementById("btn-empty-search");
       filterButton.classList.add("d-none");
       emptySearchBtn.classList.add("d-none");
+
+      this.activeFilters = false;
     },
   },
 
   mounted() {
     store.fetchAllApartments();
-
     this.fetchServices();
+
+    console.log("activefilters " + this.activeFilters);
   },
 };
 </script>
@@ -195,6 +203,73 @@ export default {
         <!-- <button class="btn btn-primary mx-3" @click="fetchFilterApartments()">
           Invia
         </button> -->
+      </div>
+      <div class="filters d-flex justify-content-center mt-3">
+        <span
+          v-if="
+            query.radius != 20 ||
+            query.rooms ||
+            query.toilets ||
+            query.beds ||
+            query.mq
+          "
+          class="badge rounded-pill text-dark me-2"
+          >Filtri applicati:</span
+        >
+        <span
+          v-if="query.radius != 20"
+          class="badge rounded-pill text-bg-warning me-2"
+        >
+          Raggio: {{ query.radius }}km
+          <span
+            @click="query.radius = 20"
+            class="border-start border-secondary ps-1 close-badge-x"
+          >
+            <font-awesome-icon icon="fa-solid fa-xmark" />
+          </span>
+        </span>
+        <span
+          v-if="query.rooms"
+          class="badge rounded-pill text-bg-warning me-2"
+        >
+          {{ query.rooms }} Stanze
+          <span
+            @click="query.rooms = ''"
+            class="border-start border-secondary ps-1 close-badge-x"
+          >
+            <font-awesome-icon icon="fa-solid fa-xmark" />
+          </span>
+        </span>
+        <span
+          v-if="query.toilets"
+          class="badge rounded-pill text-bg-warning me-2"
+        >
+          {{ query.toilets }} Bagni
+          <span
+            @click="query.toilets = ''"
+            class="border-start border-secondary ps-1 close-badge-x"
+          >
+            <font-awesome-icon icon="fa-solid fa-xmark" />
+          </span>
+        </span>
+        <span v-if="query.beds" class="badge rounded-pill text-bg-warning me-2"
+          >{{ query.beds }} Letti
+          <span
+            @click="query.beds = ''"
+            class="border-start border-secondary ps-1 close-badge-x"
+          >
+            <font-awesome-icon icon="fa-solid fa-xmark" />
+          </span>
+        </span>
+        <span v-if="query.mq" class="badge rounded-pill text-bg-warning me-2"
+          >{{ query.mq }} Metri Quadri
+          <span
+            @click="query.mq = ''"
+            class="border-start border-secondary ps-1 close-badge-x"
+          >
+            <font-awesome-icon icon="fa-solid fa-xmark" />
+          </span>
+        </span>
       </div>
 
       <div class="d-flex d-md-none justify-content-between mt-2 box-search-mobile">
@@ -301,8 +376,17 @@ export default {
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Chiudi
           </button>
-          <button class="btn btn-primary mx-3" @click="fetchFilterApartments()" data-bs-dismiss="modal"
-            style="color: black; background-color: #fab005">
+
+          <button
+            class="btn btn-primary mx-3"
+            @click="
+              fetchFilterApartments();
+              showFilters();
+            "
+            data-bs-dismiss="modal"
+            style="color: black; background-color: #fab005"
+          >
+
             Ricerca
           </button>
         </div>
@@ -334,6 +418,10 @@ export default {
       width: 25px;
     }
   }
+}
+
+.close-badge-x {
+  cursor: pointer;
 }
 
 #autocomplete-results {
