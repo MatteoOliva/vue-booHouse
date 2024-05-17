@@ -236,7 +236,10 @@ export default {
         >
           Raggio: {{ query.radius }}km
           <span
-            @click="query.radius = 20"
+            @click="
+              query.radius = 20;
+              fetchFilterApartments();
+            "
             class="border-start border-secondary ps-1 close-badge-x"
           >
             <font-awesome-icon icon="fa-solid fa-xmark" />
@@ -248,7 +251,10 @@ export default {
         >
           {{ query.rooms }} Stanze
           <span
-            @click="query.rooms = ''"
+            @click="
+              query.rooms = '';
+              fetchFilterApartments();
+            "
             class="border-start border-secondary ps-1 close-badge-x"
           >
             <font-awesome-icon icon="fa-solid fa-xmark" />
@@ -260,7 +266,10 @@ export default {
         >
           {{ query.toilets }} Bagni
           <span
-            @click="query.toilets = ''"
+            @click="
+              query.toilets = '';
+              fetchFilterApartments();
+            "
             class="border-start border-secondary ps-1 close-badge-x"
           >
             <font-awesome-icon icon="fa-solid fa-xmark" />
@@ -269,7 +278,10 @@ export default {
         <span v-if="query.beds" class="badge rounded-pill text-bg-warning me-2"
           >{{ query.beds }} Letti
           <span
-            @click="query.beds = ''"
+            @click="
+              query.beds = '';
+              fetchFilterApartments();
+            "
             class="border-start border-secondary ps-1 close-badge-x"
           >
             <font-awesome-icon icon="fa-solid fa-xmark" />
@@ -278,7 +290,10 @@ export default {
         <span v-if="query.mq" class="badge rounded-pill text-bg-warning me-2"
           >{{ query.mq }} Metri Quadri
           <span
-            @click="query.mq = ''"
+            @click="
+              query.mq = '';
+              fetchFilterApartments();
+            "
             class="border-start border-secondary ps-1 close-badge-x"
           >
             <font-awesome-icon icon="fa-solid fa-xmark" />
