@@ -225,6 +225,36 @@ export default {
         </button> -->
 
         <div
+          class="col-12 d-flex d-md-none justify-content-between mt-2 px-0 box-search-mobile"
+        >
+          <span class="advanced-search"
+            ><button
+              id="btn-filter"
+              style="color: black; background-color: #fab005"
+              type="button"
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Ricerca Avanzata
+            </button></span
+          >
+
+          <span
+            ><button
+              @click="emptySearch()"
+              id="btn-empty-search"
+              style="color: white; background-color: #cc1136"
+              type="button"
+              class="btn"
+            >
+              Azzera ricerca
+            </button></span
+          >
+        </div>
+
+        <!-- badges per i filtri della ricerca avanzata -->
+        <div
           class="filters d-flex justify-content-center mt-3 col-12 flex-wrap"
         >
           <span
@@ -332,35 +362,6 @@ export default {
             </span>
           </span>
         </div>
-      </div>
-
-      <div
-        class="d-flex d-md-none justify-content-between mt-2 box-search-mobile"
-      >
-        <span class="advanced-search"
-          ><button
-            id="btn-filter"
-            style="color: black; background-color: #fab005"
-            type="button"
-            class="btn ms-2"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            Ricerca Avanzata
-          </button></span
-        >
-
-        <span
-          ><button
-            @click="emptySearch()"
-            id="btn-empty-search"
-            style="color: white; background-color: #cc1136"
-            type="button"
-            class="btn me-2"
-          >
-            Azzera ricerca
-          </button></span
-        >
       </div>
 
       <div
