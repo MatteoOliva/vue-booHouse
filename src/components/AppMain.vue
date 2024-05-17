@@ -3,17 +3,19 @@ import axios from "axios";
 import { store, api } from "../store";
 
 import CarouselApartments from "./search_components/CarouselApartments.vue";
+import AppCarousel from "./carousel_components/AppCarousel.vue";
 
 export default {
-    data() {
-        return {
-            title: "MAIN",
-            store,
-            api,
-        };
-    },
+  data() {
+    return {
+      title: "MAIN",
+      store,
+      api,
+    };
+  },
 
-    components: { CarouselApartments },
+  components: { CarouselApartments, AppCarousel },
+
 
     methods: {},
 
@@ -22,10 +24,12 @@ export default {
         store.fetchApartmentsSponsor();
 
     }
+
 };
 </script>
 
 <template>
+
     <div class="container-main">
         <!-- CAROSELLO -->
         <div class="carousel-container">
@@ -41,12 +45,24 @@ export default {
                 <font-awesome-icon icon="fa-solid fa-down-long" bounce />
             </p>
         </div>
-    </div>
-</template>
 
+    </div>
+
+    <div class="slogan-search" @click="scrollToSearch()">
+      <p class="m-0">
+        <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+        <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+        Trova il tuo alloggio da Paura!
+        <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+        <font-awesome-icon icon="fa-solid fa-down-long" bounce />
+      </p>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .container-main {
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -84,31 +100,33 @@ export default {
     margin: 0, auto;
     font-size: 2.5rem;
     font-weight: bold;
+
 }
 
 @media screen and (max-width: 1420px) {
-    .slogan-search p {
-        font-size: 2rem;
-    }
+  .slogan-search p {
+    font-size: 2rem;
+  }
 
-    .carousel-container {
-        bottom: 15%;
-    }
+  .carousel-container {
+    bottom: 15%;
+  }
 }
 
 @media screen and (max-width: 1180px) {
-    .carousel-container {
-        bottom: 18%;
-    }
+  .carousel-container {
+    bottom: 18%;
+  }
 }
 
 @media screen and (max-width: 1138px) {
-    .slogan-search p {
-        font-size: 1.5rem;
-    }
+  .slogan-search p {
+    font-size: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 992px) {
+
     .container-main {
         background-image: url(/src/img/background-home-992.jpg);
     }
@@ -118,12 +136,14 @@ export default {
         padding: 10px;
         border-radius: 15px;
     }
+
 }
 
 @media screen and (max-width: 768px) {
-    .container-main {
-        background-image: url(/src/img/background-home-768.jpg);
-    }
+  .container-main {
+    background-image: url(/src/img/background-home-768.jpg);
+  }
+
 
     .slogan-search p {
         font-size: 1.7rem;
@@ -136,5 +156,6 @@ export default {
     .slogan-search p {
         font-size: 1.4rem;
     }
+
 }
 </style>
