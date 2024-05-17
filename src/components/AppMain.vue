@@ -47,29 +47,38 @@ export default {
 
 <style lang="scss" scoped>
 .container-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+
     width: 100%;
     height: calc(100vh - 170px);
     background-image: url(/src/img/background-home-new.jpg);
     background-position: top;
     background-size: cover;
-    position: relative;
+    // position: relative;
     overflow: auto;
     scrollbar-width: none;
 }
 
 .carousel-container {
     width: 100%;
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
+    // position: absolute;
+    // bottom: 10%;
+    // left: 50%;
+    // transform: translateX(-50%);
 }
 
 .slogan-search {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+    // position: absolute;
+    // bottom: 15px;
+    // left: 50%;
+    // transform: translateX(-50%);
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    padding: 15px;
+    border-radius: 25px;
     color: #fab005;
     text-align: center;
     margin: 0, auto;
@@ -105,8 +114,7 @@ export default {
     }
 
     .slogan-search p {
-        font-size: 1.3rem;
-        background-color: rgba($color: #000000, $alpha: 0.7);
+        font-size: 1.7rem;
         padding: 10px;
         border-radius: 15px;
     }
@@ -118,17 +126,15 @@ export default {
     }
 
     .slogan-search p {
-        font-size: 0.8rem;
+        font-size: 1.7rem;
     }
 
-    .carousel-container {
-        bottom: 25%;
-    }
+
 }
 
 @media screen and (max-width: 576px) {
     .slogan-search p {
-        font-size: 0.6rem;
+        font-size: 1.4rem;
     }
 }
 </style>

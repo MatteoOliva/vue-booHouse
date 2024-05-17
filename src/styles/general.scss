@@ -1,3 +1,15 @@
 @use "./partials/variables.scss" as *;
 @use "./partials/mixins" as *;
 @import "bootstrap/scss/bootstrap";
+
+.nosifer-regular {
+  font-family: "Nosifer", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.creepster-regular {
+  font-family: "Creepster", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}

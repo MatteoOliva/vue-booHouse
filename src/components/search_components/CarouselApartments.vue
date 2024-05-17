@@ -62,13 +62,12 @@ export default defineComponent({
 <template>
 
   <div class="carousel-wrapper" v-if="apartments">
-    <div class="text-center title-ev">
-      <div class="evidenza-alloggi">
-        <font-awesome-icon icon="fa-solid fa-skull-crossbones" />
-        Alloggi Infestati in evidenza...
-        <font-awesome-icon icon="fa-solid fa-skull-crossbones" />
-      </div>
-    </div>
+    <h1 class="text-white text-center creepster-regular evidenza-alloggi"><font-awesome-icon
+        icon="fa-solid fa-skull-crossbones" />
+      Prenota la
+      tua fuga da
+      favola...con un tocco di mistero! <font-awesome-icon icon="fa-solid fa-skull-crossbones" /></h1>
+
     <swiper :slides-per-view="slidesPerView" :space-between="20" :loop="true"
       :autoplay="{ delay: 0, disableOnInteraction: false }" :speed=3000>
       <swiper-slide v-for="(apartment, index) in apartments" :key="index">
@@ -97,10 +96,34 @@ export default defineComponent({
 @import "/node_modules/swiper/modules/pagination.css";
 @import "/node_modules/swiper/modules/navigation.css";
 
+.evidenza-alloggi {
+
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000,
+    -2px 0px 0 #000,
+    2px 0px 0 #000,
+    0px -2px 0 #000,
+    0px 2px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000,
+    3px 3px 0 #000,
+    -3px 0px 0 #000,
+    3px 0px 0 #000,
+    0px -3px 0 #000,
+    0px 3px 0 #000;
+}
+
 .carousel-wrapper {
   width: 100%;
   padding: 0;
   box-sizing: border-box;
+  background-color: rgba($color: #000000, $alpha: 0.6);
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 .title-ev {
@@ -164,7 +187,7 @@ export default defineComponent({
   }
 
   .evidenza-alloggi {
-    font-size: 20px
+    font-size: 1.9rem
   }
 }
 
@@ -175,7 +198,7 @@ export default defineComponent({
   }
 
   .evidenza-alloggi {
-    font-size: 18px
+    font-size: 1.5rem
   }
 }
 
@@ -186,7 +209,7 @@ export default defineComponent({
   }
 
   .evidenza-alloggi {
-    font-size: 12px;
+    font-size: 1.2rem;
   }
 }
 </style>
