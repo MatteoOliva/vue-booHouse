@@ -98,7 +98,7 @@ export default {
       // const lat = this.query.lat;
       // const lon = this.query.lon;
       // const radius = this.query.radius;
-
+      store.isVisible = true;
       let params = { ...this.query };
       params.services = JSON.stringify(params.services);
       //   console.log(params);
@@ -110,7 +110,9 @@ export default {
         .then((response) => {
           store.apartments = response.data;
           console.log(response.data);
+          store.isVisible = false;
         });
+
     },
 
     showFilters() {
