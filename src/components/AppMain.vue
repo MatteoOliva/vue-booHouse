@@ -44,16 +44,6 @@ export default {
       </p>
     </div>
   </div>
-
-  <div class="slogan-search" @click="scrollToSearch()">
-    <p class="m-0">
-      <font-awesome-icon icon="fa-solid fa-down-long" bounce />
-      <font-awesome-icon icon="fa-solid fa-down-long" bounce />
-      Trova il tuo alloggio da Paura!
-      <font-awesome-icon icon="fa-solid fa-down-long" bounce />
-      <font-awesome-icon icon="fa-solid fa-down-long" bounce />
-    </p>
-  </div>
 </template>
 
 <style lang="scss" scoped>
