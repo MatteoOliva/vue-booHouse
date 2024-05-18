@@ -18,9 +18,9 @@ export default {
     };
   },
 
-  mounted() {
-    // Altre operazioni di inizializzazione
-  },
+  created() {},
+
+  mounted() {},
 
   watch: {
     apartment: {
@@ -92,7 +92,7 @@ export default {
             background: `
             #2d383c
             `,
-            padding: '1em', // Rimuove padding extra
+            padding: "1em", // Rimuove padding extra
             // showClass: {
             //   popup: 'animate__animated animate__fadeInDown'
             // },
@@ -154,10 +154,21 @@ export default {
                 <img v-if="apartment.image" :src="apartment.image" class="" />
                 <div class="butt-search">
                   <!-- PULSANTE MAIL -->
-                  <a type="button" class="mail-button text-decoration-none" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                    <div class="container-contact d-flex justify-content-center flex-column">
-                      <font-awesome-icon icon="fa-solid fa-envelope" beat style="color: #cc1136" />
+                  <a
+                    type="button"
+                    class="mail-button text-decoration-none"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    data-bs-whatever="@mdo"
+                  >
+                    <div
+                      class="container-contact d-flex justify-content-center flex-column"
+                    >
+                      <font-awesome-icon
+                        icon="fa-solid fa-envelope"
+                        beat
+                        style="color: #cc1136"
+                      />
                       <div class="m-0 contact-mail">Contatta l'alloggio</div>
                     </div>
                   </a>
@@ -171,13 +182,19 @@ export default {
             <div class="row">
               <div class="col-6 mt-4">
                 <h5>
-                  <font-awesome-icon class="text-danger" icon="fa-solid fa-map" />
+                  <font-awesome-icon
+                    class="text-danger"
+                    icon="fa-solid fa-map"
+                  />
                   Metri Quadri: <strong>{{ apartment.mq }}</strong>
                 </h5>
               </div>
               <div class="col-6 mt-4">
                 <h5>
-                  <font-awesome-icon class="text-danger" icon="fa-solid fa-person-shelter" />
+                  <font-awesome-icon
+                    class="text-danger"
+                    icon="fa-solid fa-person-shelter"
+                  />
                   Camere: <strong>{{ apartment.rooms }}</strong>
                 </h5>
               </div>
@@ -186,13 +203,19 @@ export default {
             <div class="row">
               <div class="col-6 mt-4">
                 <h5>
-                  <font-awesome-icon class="text-danger" icon="fa-solid fa-bed" />
+                  <font-awesome-icon
+                    class="text-danger"
+                    icon="fa-solid fa-bed"
+                  />
                   Letti: <strong>{{ apartment.beds }}</strong>
                 </h5>
               </div>
               <div class="col-6 mt-4">
                 <h5>
-                  <font-awesome-icon class="text-danger" icon="fa-solid fa-bath" />
+                  <font-awesome-icon
+                    class="text-danger"
+                    icon="fa-solid fa-bath"
+                  />
                   Bagni: <strong>{{ apartment.toilets }}</strong>
                 </h5>
               </div>
@@ -204,10 +227,21 @@ export default {
               <img v-if="apartment.image" :src="apartment.image" class="" />
               <div class="butt-search">
                 <!-- PULSANTE MAIL -->
-                <a type="button" class="mail-button text-decoration-none" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                  <div class="container-contact d-flex justify-content-center flex-column">
-                    <font-awesome-icon icon="fa-solid fa-envelope" beat style="color: #cc1136" />
+                <a
+                  type="button"
+                  class="mail-button text-decoration-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  data-bs-whatever="@mdo"
+                >
+                  <div
+                    class="container-contact d-flex justify-content-center flex-column"
+                  >
+                    <font-awesome-icon
+                      icon="fa-solid fa-envelope"
+                      beat
+                      style="color: #cc1136"
+                    />
                     <div class="m-0 contact-mail">Contatta l'alloggio</div>
                   </div>
                 </a>
@@ -220,14 +254,22 @@ export default {
         </div>
 
         <div class="row justify-content-center mt-lg-4">
-          <div class="col-12 justify-content-center col-lg-2 d-flex align-items-center justify-content-lg-end mt-2">
+          <div
+            class="col-12 justify-content-center col-lg-2 d-flex align-items-center justify-content-lg-end mt-2"
+          >
             <p class="ms-3 mb-1 text"><strong>Servizi Disponili:</strong></p>
           </div>
 
-          <div class="row gap-3 justify-content-center justify-content-lg-start col-lg-10">
-            <div class="col-2 col-lg-1 p-0" v-for="service in apartment.services">
+          <div
+            class="row gap-3 justify-content-center justify-content-lg-start col-lg-10"
+          >
+            <div
+              class="col-2 col-lg-1 p-0"
+              v-for="service in apartment.services"
+            >
               <div
-                class="card h-100 border-0 bg-transparent d-flex direction-column justify-content-between align-items-center">
+                class="card h-100 border-0 bg-transparent d-flex direction-column justify-content-between align-items-center"
+              >
                 <div class="service-name text-white text-center">
                   {{ service.name }}
                 </div>
@@ -248,7 +290,11 @@ export default {
         <!-- maps -->
         <div class="row justify-content-center my-3">
           <div v-if="apartment.lon && apartment.lat" class="col-12">
-            <div id="map" style="width: 100%; height: 200px" class="rounded-4"></div>
+            <div
+              id="map"
+              style="width: 100%; height: 200px"
+              class="rounded-4"
+            ></div>
           </div>
         </div>
 
@@ -263,7 +309,13 @@ export default {
     </div>
   </div>
   <!-- Modale Messaggio -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content bg-dark">
         <div class="modal-header">
@@ -271,28 +323,58 @@ export default {
             Scrivi a
             <strong style="color: #fab005">{{ this.apartment.title }}</strong>
           </h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-            style="filter: invert(100%)"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            style="filter: invert(100%)"
+          ></button>
         </div>
         <div class="modal-body">
           <form id="messageform" method="post" @submit.prevent="createMessage">
             <div class="mb-3">
               <label for="email" class="col-form-label">E-Mail:</label>
-              <input type="email" class="form-control" id="email" ref="email" autocomplete="email" v-model="email"
-                required />
-              <span v-if="!isEmailValid" style="color: #cc1136">Inserisci mail</span>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                ref="email"
+                autocomplete="email"
+                v-model="email"
+                required
+              />
+              <span v-if="!isEmailValid" style="color: #cc1136"
+                >Inserisci mail</span
+              >
             </div>
             <div class="mb-3">
               <label for="content" class="col-form-label">Messaggio:</label>
-              <textarea class="form-control" id="content" rows="5" ref="content" v-model="content" required></textarea>
-              <span v-if="!isContentValid" style="color: #cc1136">Il contenuto deve essere di almeno 10
-                caratteri.</span>
+              <textarea
+                class="form-control"
+                id="content"
+                rows="5"
+                ref="content"
+                v-model="content"
+                required
+              ></textarea>
+              <span v-if="!isContentValid" style="color: #cc1136"
+                >Il contenuto deve essere di almeno 10 caratteri.</span
+              >
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
                 Chiudi
               </button>
-              <button type="submit" class="btn btn-primary" style="background-color: #fab005; color: black">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="background-color: #fab005; color: black"
+              >
                 Invia
               </button>
             </div>
