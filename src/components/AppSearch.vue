@@ -170,6 +170,13 @@ export default {
       filterButton.classList.add("d-none");
       emptySearchBtn.classList.add("d-none");
 
+      const filterMobilButton = document.getElementById("btn-filter-mobile");
+      const emptyMobileSearchBtn = document.getElementById(
+        "btn-empty-search-mobile"
+      );
+      filterMobilButton.classList.add("d-none");
+      emptyMobileSearchBtn.classList.add("d-none");
+
       this.activeFilters = false;
     },
   },
