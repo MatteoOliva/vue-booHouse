@@ -29,9 +29,7 @@ export default {
   <div class="container-main">
     <!-- CAROSELLO -->
     <div class="carousel-container">
-      <carousel-apartments
-        :apartments="store.sponsoredApartments.sponsored_apartments"
-      ></carousel-apartments>
+      <carousel-apartments :apartments="store.sponsoredApartments.sponsored_apartments"></carousel-apartments>
     </div>
 
     <div class="slogan-search" @click="scrollToSearch()">
@@ -133,6 +131,12 @@ export default {
 @media screen and (max-width: 576px) {
   .slogan-search p {
     font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .slogan-search p {
+    font-size: 1.1rem;
   }
 }
 </style>
