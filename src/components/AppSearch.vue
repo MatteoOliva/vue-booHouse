@@ -86,6 +86,14 @@ export default {
                 document.getElementById("btn-empty-search");
               filterButton.classList.remove("d-none");
               emptySearchBtn.classList.remove("d-none");
+
+              const filterMobileButton =
+                document.getElementById("btn-filter-mobile");
+              const emptySearchMobileBtn = document.getElementById(
+                "btn-empty-search-mobile"
+              );
+              filterMobileButton.classList.remove("d-none");
+              emptySearchMobileBtn.classList.remove("d-none");
             };
             container.appendChild(div);
           });
@@ -112,7 +120,6 @@ export default {
           console.log(response.data);
           store.isVisible = false;
         });
-
     },
 
     showFilters() {
@@ -231,10 +238,10 @@ export default {
         >
           <span class="advanced-search"
             ><button
-              id="btn-filter"
+              id="btn-filter-mobile"
               style="color: black; background-color: #fab005"
               type="button"
-              class="btn"
+              class="btn d-none"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
@@ -245,10 +252,10 @@ export default {
           <span
             ><button
               @click="emptySearch()"
-              id="btn-empty-search"
+              id="btn-empty-search-mobile"
               style="color: white; background-color: #cc1136"
               type="button"
-              class="btn"
+              class="btn d-none"
             >
               Azzera ricerca
             </button></span
