@@ -1,8 +1,9 @@
 <script>
-import { store } from "../../store";
-import { defineComponent } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/swiper-bundle.css';
+import axios from "axios";
+import { store, api } from "../../store";
+import { defineComponent } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/swiper-bundle.css";
 import { register } from "swiper/element/bundle";
 
 // Import Swiper styles
@@ -19,20 +20,19 @@ export default defineComponent({
   data() {
     return {
       store,
+      api,
       slidesPerView: 5,
     };
-
   },
   created() {
     // store.fetchApartmentsSponsor();
   },
   mounted() {
     this.updateSlidesPerView();
-    window.addEventListener('resize', this.updateSlidesPerView);
-
+    window.addEventListener("resize", this.updateSlidesPerView);
   },
   beforeUnmount() {
-    window.removeEventListener('resize', this.updateSlidesPerView);
+    window.removeEventListener("resize", this.updateSlidesPerView);
   },
   methods: {
     updateSlidesPerView() {
@@ -49,46 +49,51 @@ export default defineComponent({
         this.slidesPerView = 5;
       }
     },
+
+    registerView(apartment) {
+      // const apartment_id = this.apartment.id;
+      // console.log("id appartamento " + apartment_id);
+      //chiamo l'api tramite axios
+      axios.get(api.basicsUrl + "/view/" + apartment.id);
+    },
   },
 });
 </script>
 
-
-
-
-
-
-
 <template>
-
   <div class="carousel-wrapper" v-if="apartments">
-    <h1 class="text-white text-center creepster-regular evidenza-alloggi"><font-awesome-icon
-        icon="fa-solid fa-skull-crossbones" />
-      Prenota la
-      tua fuga da
-      favola...con un tocco di mistero! <font-awesome-icon icon="fa-solid fa-skull-crossbones" /></h1>
+    <h1 class="text-white text-center creepster-regular evidenza-alloggi">
+      <font-awesome-icon icon="fa-solid fa-skull-crossbones" /> Prenota la tua
+      fuga da favola...con un tocco di mistero!
+      <font-awesome-icon icon="fa-solid fa-skull-crossbones" />
+    </h1>
 
-    <swiper :slides-per-view="slidesPerView" :space-between="20" :loop="true"
-      :autoplay="{ delay: 0, disableOnInteraction: false }" :speed=3000>
+    <swiper
+      :slides-per-view="slidesPerView"
+      :space-between="20"
+      :loop="true"
+      :autoplay="{ delay: 0, disableOnInteraction: false }"
+      :speed="3000"
+    >
       <swiper-slide v-for="(apartment, index) in apartments" :key="index">
         <div class="carousel__item">
-          <router-link :to="{ name: 'details', params: { slug: apartment.slug } }" style="text-decoration: none;">
-            <img :src="apartment.image" class="carousel-img" :alt="apartment.title">
+          <router-link
+            @click="registerView(apartment)"
+            :to="{ name: 'details', params: { slug: apartment.slug } }"
+            style="text-decoration: none"
+          >
+            <img
+              :src="apartment.image"
+              class="carousel-img"
+              :alt="apartment.title"
+            />
             <h5 class="titoloslider">{{ apartment.title }}</h5>
           </router-link>
         </div>
       </swiper-slide>
-
     </swiper>
   </div>
 </template>
-
-
-
-
-
-
-
 
 <style lang="scss" scoped>
 @import "/node_modules/swiper/swiper-bundle.css";
@@ -97,23 +102,10 @@ export default defineComponent({
 @import "/node_modules/swiper/modules/navigation.css";
 
 .evidenza-alloggi {
-
-  text-shadow:
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000,
-    -2px 0px 0 #000,
-    2px 0px 0 #000,
-    0px -2px 0 #000,
-    0px 2px 0 #000,
-    -3px -3px 0 #000,
-    3px -3px 0 #000,
-    -3px 3px 0 #000,
-    3px 3px 0 #000,
-    -3px 0px 0 #000,
-    3px 0px 0 #000,
-    0px -3px 0 #000,
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000, -2px 0px 0 #000, 2px 0px 0 #000, 0px -2px 0 #000,
+    0px 2px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000,
+    3px 3px 0 #000, -3px 0px 0 #000, 3px 0px 0 #000, 0px -3px 0 #000,
     0px 3px 0 #000;
 }
 
@@ -187,7 +179,7 @@ export default defineComponent({
   }
 
   .evidenza-alloggi {
-    font-size: 1.9rem
+    font-size: 1.9rem;
   }
 }
 
@@ -198,7 +190,7 @@ export default defineComponent({
   }
 
   .evidenza-alloggi {
-    font-size: 1.5rem
+    font-size: 1.5rem;
   }
 }
 
